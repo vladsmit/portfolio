@@ -23,7 +23,7 @@ const Layout = (props) => {
 
 Layout.propTypes = {
     chatId: PropTypes.number.isRequired,
-    chats: PropTypes.object,
+    chats: PropTypes.object.isRequired,
 };
 
 Layout.defaultProps = {

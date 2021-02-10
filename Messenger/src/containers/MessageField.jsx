@@ -58,8 +58,8 @@ const MessageField = (props) => {
 };
 
 MessageField.propTypes = {
-    messages: PropTypes.object,
-    chats: PropTypes.object,
+    messages: PropTypes.object.isRequired,
+    chats: PropTypes.object.isRequired,
     chatId: PropTypes.number.isRequired,
     addMessage: PropTypes.func.isRequired,
     removeMessage: PropTypes.func.isRequired,

@@ -14,9 +14,9 @@ const Message = (props) => {
 };
 
 Message.propTypes = {
-    text: PropTypes.string,
-    sender: PropTypes.string,
-    removeMessage: PropTypes.func,
+    text: PropTypes.string.isRequired,
+    sender: PropTypes.string.isRequired,
+    removeMessage: PropTypes.func.isRequired,
 };
 
 export default Message;

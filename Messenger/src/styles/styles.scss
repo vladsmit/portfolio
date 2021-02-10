@@ -5,6 +5,16 @@
 
 $bgc: lightslategrey;
 
+body {
+    margin: 0;
+}
+
+#root {
+    width: 500px;
+    min-height: 389px;
+    margin: auto;
+}
+
 .mainWrapper {
     width: 500px;
     display: flex;

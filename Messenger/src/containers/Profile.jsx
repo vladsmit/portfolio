@@ -11,7 +11,7 @@ const Profile = (props) => {
 
     return (
         <div className="profile--wrapper">
-            <img src="../../dist/build/assets/avatar.png" alt="Avatar" width="185" height="185" />
+            <img src="/dist/build/assets/avatar.png" alt="Avatar" width="185" height="185" />
             <div className="profile__infoBlock profile__infoBlock--margin">
                 <p className="profile__info--margin">Имя: {props.profile.name}</p>
                 <p className="profile__info--margin">Город: {props.profile.city}</p>
@@ -26,7 +26,7 @@ const Profile = (props) => {
 };
 
 Profile.propTypes = {
-    profile: PropTypes.object,
+    profile: PropTypes.object.isRequired,
     goBack: PropTypes.func.isRequired,
 };
 

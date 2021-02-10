@@ -14,7 +14,7 @@ const ChatCreator = (props) => {
 };
 
 ChatCreator.propTypes = {
-    title: PropTypes.string,
+    title: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     onClick: PropTypes.func.isRequired,
     removeChat: PropTypes.func.isRequired,

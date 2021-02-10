@@ -12,7 +12,7 @@ const Header = (props) => {
     return (
         <header className="mainHeader">
             <a className="mainHeader__profileLink" onClick={() => handleNavigate('/profile')}>
-                <img src="../../dist/build/assets/profile.png" alt="profileLogo" width="40"/>{props.profile.name}
+                <img src="/dist/build/assets/profile.png" alt="profileLogo" width="40"/>{props.profile.name}
             </a>
             <span className="mainHeader__chatName mainHeader__chatName--margin">{props.chats[props.chatId].title}</span>
         </header>
@@ -20,9 +20,9 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
-    profile: PropTypes.object,
-    chats: PropTypes.object,
-    chatId: PropTypes.number,
+    profile: PropTypes.object.isRequired,
+    chats: PropTypes.object.isRequired,
+    chatId: PropTypes.number.isRequired,
     push: PropTypes.func.isRequired,
 };
 

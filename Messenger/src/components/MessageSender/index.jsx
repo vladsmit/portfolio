@@ -19,7 +19,7 @@ const MessageSender = (props) => {
 };
 
 MessageSender.propTypes = {
-    input: PropTypes.string,
+    input: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
 };

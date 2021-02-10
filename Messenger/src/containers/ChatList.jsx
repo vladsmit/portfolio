@@ -52,7 +52,7 @@ const chatElements = Object.entries(props.chats).map(([key, value], i) => (<li k
 
 ChatList.propTypes = {
     chatId: PropTypes.number.isRequired,
-    chats: PropTypes.object,
+    chats: PropTypes.object.isRequired,
     addChat: PropTypes.func.isRequired,
     removeChat: PropTypes.func.isRequired,
     push: PropTypes.func.isRequired,
