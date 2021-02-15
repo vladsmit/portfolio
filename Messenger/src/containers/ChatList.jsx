@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import connect from 'react-redux/es/connect/connect';
 import { bindActionCreators } from 'redux';
 
-import { addChat, removeChat } from '../store/actions/chatActions';
-import ChatCreator from '../components/ChatCreator';
+import { addChat, removeChat } from '@actions/chatActions';
+import ChatCreator from '@components/ChatCreator';
 
 const ChatList = (props) => {
     const [title, setTitle] = useState(() => {

@@ -1,4 +1,4 @@
-import { ADD_MESSAGE, addMessage } from '../actions/messageActions';
+import { ADD_MESSAGE, addMessage } from '@actions/messageActions';
 
 export default store => next => action => {
     switch (action.type) {

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import connect from 'react-redux/es/connect/connect';
 import { bindActionCreators } from 'redux';
 
-import Message from '../components/Message';
-import MessageSender from '../components/MessageSender';
-import { addMessage, removeMessage } from '../store/actions/messageActions';
+import Message from '@components/Message';
+import MessageSender from '@components/MessageSender';
+import { addMessage, removeMessage } from '@actions/messageActions';
 
 const MessageField = (props) => {
     const [value, setValue] = useState(() => {

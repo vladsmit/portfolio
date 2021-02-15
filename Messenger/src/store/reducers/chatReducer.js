@@ -1,6 +1,6 @@
 import update from 'react-addons-update';
-import { ADD_MESSAGE, REMOVE_MESSAGE } from '../actions/messageActions';
-import { ADD_CHAT, REMOVE_CHAT } from '../actions/chatActions';
+import { ADD_MESSAGE, REMOVE_MESSAGE } from '@actions/messageActions';
+import { ADD_CHAT, REMOVE_CHAT } from '@actions/chatActions';
 
 const initStore = {
     messages: {

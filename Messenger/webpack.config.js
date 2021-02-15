@@ -29,7 +29,15 @@ module.exports = {
         }
     },
     resolve: {
-        extensions: ['.jsx', '.js']
+        extensions: ['.jsx', '.js'],
+        alias: {
+            '@styles': path.resolve(__dirname, 'src', 'styles'),
+            '@components': path.resolve(__dirname, 'src', 'components'),
+            '@containers': path.resolve(__dirname, 'src', 'containers'),
+            '@actions': path.resolve(__dirname, 'src', 'store', 'actions'),
+            '@reducers': path.resolve(__dirname, 'src', 'store', 'reducers'),
+            '@middlewares': path.resolve(__dirname, 'src', 'store', 'middlewares')
+        }
     },
     plugins: [
         new HTMLWebpackPlugin({

@@ -3,9 +3,9 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import connect from 'react-redux/es/connect/connect';
 
-import MessageField from './MessageField';
-import Header from './Header';
-import ChatList from './ChatList';
+import MessageField from '@containers/MessageField';
+import Header from '@containers/Header';
+import ChatList from '@containers/ChatList';
 
 const Layout = (props) => {
     if (props.chats[props.chatId] === undefined) {

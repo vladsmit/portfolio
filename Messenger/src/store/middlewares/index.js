@@ -1,4 +1,4 @@
-import messageMiddleware from './messageMiddleware';
+import messageMiddleware from '@middlewares/messageMiddleware';
 
 export default [
     messageMiddleware,
