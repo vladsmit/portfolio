@@ -1,6 +1,6 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -15,11 +15,11 @@ module.exports = {
         publicPath: '/dist/build/'
     },
     target: 'web',
-    devtool: 'inline-source-map',
+    devtool: 'source-map',
     optimization: {
         minimizer: [
             new TerserWebpackPlugin(),
-            new OptimizeCssAssetsWebpackPlugin()
+            new OptimizeCssAssetsPlugin()
         ]
     },
     devServer: {
