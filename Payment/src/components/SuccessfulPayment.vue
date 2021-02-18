@@ -34,15 +34,18 @@
                 </li>
             </ul>
         </div>
-        <router-link to="/payments" class="button--link button--margin">
-            <input type="button" value="Вернуться в кабинет" class="button" />
-        </router-link>
+        <input type="button" value="Вернуться в кабинет" class="button button--margin" @click="pushBack" />
     </div>
 </template>
 
 <script>
 export default {
     name: "SuccessfulPayment",
+    methods: {
+        pushBack() {
+            this.$router.push({ name: "ValidateForm" });
+        }
+    },
     beforeRouteLeave(to, from, next) {
         this.$store.commit("changeValidationPassed");
         next();
@@ -113,9 +116,6 @@ export default {
     }
     &:active {
         background-color: rgba(7, 87, 179, 0.836);
-    }
-    &--link {
-        text-decoration: none;
     }
 }
 

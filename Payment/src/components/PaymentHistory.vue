@@ -23,15 +23,18 @@
                 </p>
             </div>
         </div>
-        <router-link to="/payments" class="button--link button--margin">
-            <input type="button" value="Вернуться в кабинет" class="button"/>
-        </router-link>
+        <input type="button" value="Вернуться в кабинет" class="button button--margin" @click="pushBack"/>
     </div>
 </template>
 
 <script>
 export default {
     name: "PaymentHistory",
+    methods: {
+        pushBack() {
+            this.$router.push({ name: "ValidateForm" });
+        }
+    },
 };
 </script>
 
@@ -128,9 +131,6 @@ export default {
     }
     &:active {
         background-color: rgba(7, 87, 179, 0.836);
-    }
-    &--link {
-        text-decoration: none;
     }
     &--margin {
         margin-top: 10px;
