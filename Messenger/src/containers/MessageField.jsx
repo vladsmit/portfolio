@@ -14,7 +14,7 @@ const MessageField = (props) => {
 
     useEffect(() => {
         updateScroll();
-    }, [props.messages, props.chats]);
+    });
 
     const handleClick = useCallback(event => {
         event.preventDefault();
