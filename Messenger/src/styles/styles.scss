@@ -11,7 +11,6 @@ body {
 
 #root {
     width: 500px;
-    min-height: 389px;
     margin: auto;
 }
 
@@ -64,7 +63,6 @@ body {
 
 .chatBlock {
     width: 30%;
-    min-height: 335px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -80,10 +78,9 @@ body {
 
 .chatBlock__list__item {
     width: 100%;
-    height: 50px;
     display: block;
     text-align: center;
-    line-height: 50px;
+    line-height: 48px;
     text-decoration: none;
     cursor: pointer;
     color: black;
@@ -151,50 +148,10 @@ body {
     padding: 15px 0;
     box-sizing: border-box;
     overflow-y: auto;
-    scroll-padding-bottom: auto;
-}
-
-.msgSender__form {
-    height: 50px;
-    display: flex;
-    align-items: center;
-    background-color: lightgray;
-    padding: 0 10px;
-}
-
-.msgSender__input {
-    width: 70%;
-    min-height: 25px;
-    border-radius: 5px;
-    border: none;
-    &--margin {
-        margin-right: 5px;
-    }
-}
-
-.sendBtn {
-    height: 27px;
-    @include mainFrame(cornsilk);
-    border: none;
-    font-size: 16px;
-    box-shadow: 2px 2px 12px 1px rgba(0,0,0,0.2);
-    cursor: pointer;
-    transition: ease-out 300ms all;
-    &:hover {
-        background-color: $bgc;
-        color: cornsilk;
-    }
-    &:active {
-        background-color: cornsilk;
-    }
-    &--margin {
-        margin-top: 5px;
-    }
 }
 
 .error--wrapper {
     width: 500px;
-    min-height: 205px;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
@@ -202,7 +159,7 @@ body {
     @include mainFrame(lightgray);
     border: 2px solid lightslategrey;
     margin: 0 auto;
-    padding: 0;
+    padding: 52px 0;
     box-sizing: border-box;
 }
 
@@ -232,6 +189,23 @@ body {
     margin: 5px 0;
 }
 
-.profile__btn--margin {
-    margin-top: 40px;
+.mainBtn {
+    @include mainFrame(cornsilk);
+    border: none;
+    line-height: 25px;
+    font-size: 16px;
+    padding: 1px 6px;
+    box-shadow: 2px 2px 12px 1px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: ease-out 300ms background-color, 300ms color;
+    &:hover {
+        background-color: $bgc;
+        color: cornsilk;
+    }
+    &:active {
+        background-color: cornsilk;
+    }
+    &--margin {
+        margin-top: 40px;
+    }
 }

@@ -13,7 +13,7 @@ const Error = (props) => {
         <div className="error--wrapper">
             <p className="error__message">Ошибка 404: Данной страницы не существует</p>
             <a onClick={() => handleNavigate('/chat/1')}>
-                <input className="sendBtn" type="submit" value="Вернуться в чат"/>
+                <input className="mainBtn" type="submit" value="Вернуться в чат"/>
             </a>
         </div> 
     );

@@ -48,7 +48,7 @@ export default {
     letter-spacing: 1px;
     padding-left: 25px;
     box-sizing: border-box;
-    transition: ease-out 300ms all;
+    transition: ease-out 300ms background-color, 300ms color;
     &:nth-child(4) {
         border-bottom: 1px solid rgb(105, 103, 103);
     }

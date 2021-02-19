@@ -12,10 +12,14 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist', 'build'),
         filename: 'js/[name].js',
-        publicPath: '/dist/build/'
+        publicPath: '/'
     },
     target: 'web',
     devtool: 'source-map',
+    performance: {
+        maxEntrypointSize: 512000,
+        maxAssetSize: 512000
+    },
     optimization: {
         minimizer: [
             new TerserWebpackPlugin(),
@@ -34,6 +38,7 @@ module.exports = {
             '@styles': path.resolve(__dirname, 'src', 'styles'),
             '@components': path.resolve(__dirname, 'src', 'components'),
             '@containers': path.resolve(__dirname, 'src', 'containers'),
+            '@store': path.resolve(__dirname, 'src', 'store'),
             '@actions': path.resolve(__dirname, 'src', 'store', 'actions'),
             '@reducers': path.resolve(__dirname, 'src', 'store', 'reducers'),
             '@middlewares': path.resolve(__dirname, 'src', 'store', 'middlewares')
@@ -52,7 +57,7 @@ module.exports = {
             patterns: [
                 {
                     from: 'src/assets',
-                    to: 'assets/[name].[ext]',
+                    to: 'img/[name].[ext]',
                     toType: 'template'
                 }
             ]
