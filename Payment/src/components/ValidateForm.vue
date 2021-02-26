@@ -333,7 +333,7 @@ export default {
             },
         },
     },
-    methods: {
+    computed: {
         createDate() {
             let date = new Date();
             let options = {
@@ -343,6 +343,8 @@ export default {
             };
             return date.toLocaleString("ru", options);
         },
+    },
+    methods: {
         checkForm() {
             this.$v.form.$touch();
             if (!this.$v.form.$error) {
@@ -351,7 +353,7 @@ export default {
                     sum: this.form.sum,
                     cardNumber: this.form.cardNumber.slot4,
                     owner: this.form.owner,
-                    date: this.createDate(),
+                    date: this.createDate,
                 });
                 if (!this.$store.state.validationPassed) {
                     this.$store.commit("changeValidationPassed");
