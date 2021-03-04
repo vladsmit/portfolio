@@ -1,6 +1,6 @@
 <template>
     <div class="mainMenu--wrapper">
-        <input class="mobileMenu--input" type="checkbox" id="mobileMenu" />
+        <input type="checkbox" id="mobileMenu" />
         <label class="mobileMenu--label" for="mobileMenu"></label>
         <div class="mobileMenu--burgerLine first"></div>
         <div class="mobileMenu--burgerLine second"></div>
@@ -8,10 +8,10 @@
         <div class="mobileMenu--burgerLine forth"></div>
         <nav class="mainMenu">
             <li class="mainMenu__item mainMenu__item--header">Личный кабинет</li>
-            <router-link to="/payments" class="mainMenu__item--link">
+            <router-link :to="{ name: 'validateForm'}" class="mainMenu__item--link">
                 <li class="mainMenu__item">Платежи</li>
             </router-link>
-            <router-link to="/history" class="mainMenu__item--link">
+            <router-link :to="{ name: 'paymentHistory'}" class="mainMenu__item--link">
                 <li class="mainMenu__item">История платежей</li>
             </router-link>
             <li class="mainMenu__item mainMenu__item--header">Выйти</li>
@@ -70,7 +70,7 @@ export default {
     text-decoration: none;
 }
 
-.mobileMenu--input {
+#mobileMenu {
     display: none;
 }
 

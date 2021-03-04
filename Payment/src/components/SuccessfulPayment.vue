@@ -34,18 +34,13 @@
                 </li>
             </ul>
         </div>
-        <input type="button" value="Вернуться в кабинет" class="button button--margin" @click="pushBack" />
+        <input type="button" value="Вернуться в кабинет" class="button button--margin" @click="$router.push({name: 'validateForm'})" />
     </div>
 </template>
 
 <script>
 export default {
     name: "SuccessfulPayment",
-    methods: {
-        pushBack() {
-            this.$router.push({ name: "ValidateForm" });
-        }
-    },
     beforeRouteLeave(to, from, next) {
         this.$store.commit("changeValidationPassed");
         next();

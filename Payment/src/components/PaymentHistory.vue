@@ -23,18 +23,13 @@
                 </p>
             </div>
         </div>
-        <input type="button" value="Вернуться в кабинет" class="button button--margin" @click="pushBack"/>
+        <input type="button" value="Вернуться в кабинет" class="button button--margin" @click="$router.push({name: 'validateForm'})" />
     </div>
 </template>
 
 <script>
 export default {
     name: "PaymentHistory",
-    methods: {
-        pushBack() {
-            this.$router.push({ name: "ValidateForm" });
-        }
-    },
 };
 </script>
 

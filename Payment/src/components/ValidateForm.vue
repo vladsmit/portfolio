@@ -358,7 +358,7 @@ export default {
                 if (!this.$store.state.validationPassed) {
                     this.$store.commit("changeValidationPassed");
                 }
-                this.$router.push({ name: "SuccessfulPayment" });
+                this.$router.push({ name: "successfulPayment" });
             }
         },
     },

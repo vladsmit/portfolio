@@ -11,7 +11,7 @@ const Profile = (props) => {
 
     return (
         <div className="profile--wrapper">
-            <img src="/img/avatar.png" alt="Avatar" width="185" />
+            <img src="/src/assets/avatar.png" alt="Avatar" width="185" />
             <div className="profile__infoBlock profile__infoBlock--margin">
                 <p className="profile__info--margin">Имя: {props.profile.name}</p>
                 <p className="profile__info--margin">Город: {props.profile.city}</p>

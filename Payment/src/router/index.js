@@ -7,22 +7,22 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/payments',
-    name: 'ValidateForm',
+    name: 'validateForm',
     component: () => import('@/components/ValidateForm.vue')
   },
   {
     path: '/history',
-    name: 'PaymentHistory',
+    name: 'paymentHistory',
     component: () => import('@/components/PaymentHistory.vue')
   },
   {
     path: '/success',
-    name: 'SuccessfulPayment',
+    name: 'successfulPayment',
     component: () => import('@/components/SuccessfulPayment.vue')
   },
   {
     path: '/404',
-    name: 'Error',
+    name: 'error',
     component: () => import('@/components/Error.vue')
   },
   {
@@ -42,8 +42,8 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.name === "SuccessfulPayment" && !store.state.validationPassed) {
-    next({ name: "ValidateForm" });
+  if (to.name === "successfulPayment" && !store.state.validationPassed) {
+    next({ name: "validateForm" });
   } else {
     next();
   }
