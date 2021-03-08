@@ -2,16 +2,16 @@
     <div id="app">
         <div class="mainWrapper">
             <h3 class="mainTitle">Задачи</h3>
-            <div v-if="taskList.length > 10" class="pagination">
+            <div v-if="getTaskList.length > 10" class="pagination">
                 <p
                     class="pagination__arrow left"
-                    v-if="page > 1"
+                    v-if="getPage > 1"
                     @click="backPage"
                 ></p>
-                Стр. {{ page }}
+                Стр. {{ getPage }}
                 <p
                     class="pagination__arrow"
-                    v-if="taskList.length > page * 10"
+                    v-if="getTaskList.length > getPage * 10"
                     @click="forwardPage"
                 ></p>
             </div>
@@ -75,65 +75,59 @@
 </template>
 
 <script>
+import { mapActions, mapGetters, mapMutations } from "vuex";
 export default {
     data() {
         return {
-            taskList: [
-                { id: 0, title: "Задание 1", completed: false, edit: false },
-                { id: 1, title: "Задание 2", completed: false, edit: false },
-                { id: 2, title: "Задание 3", completed: false, edit: false },
-                { id: 3, title: "Задание 4", completed: false, edit: false },
-                { id: 4, title: "Задание 5", completed: false, edit: false },
-                { id: 5, title: "Задание 6", completed: false, edit: false },
-                { id: 6, title: "Задание 7", completed: false, edit: false },
-                { id: 7, title: "Задание 8", completed: false, edit: false },
-                { id: 8, title: "Задание 9", completed: false, edit: false },
-                { id: 9, title: "Задание 10", completed: false, edit: false },
-                { id: 10, title: "Задание 11", completed: false, edit: false },
-                { id: 11, title: "Задание 12", completed: false, edit: false },
-                { id: 12, title: "Задание 13", completed: false, edit: false },
-                { id: 13, title: "Задание 14", completed: false, edit: false },
-                { id: 14, title: "Задание 15", completed: false, edit: false },
-                { id: 15, title: "Задание 16", completed: false, edit: false },
-                { id: 16, title: "Задание 17", completed: false, edit: false },
-                { id: 17, title: "Задание 18", completed: false, edit: false },
-                { id: 18, title: "Задание 19", completed: false, edit: false },
-                { id: 19, title: "Задание 20", completed: false, edit: false },
-                { id: 20, title: "Задание 21", completed: false, edit: false },
-            ],
             newTask: "",
             editTask: "",
-            page: null,
         };
     },
     computed: {
-        paginationPageList() {
-            let start = (this.page - 1) * 10;
-            let end = this.page * 10;
-            return this.taskList.slice(start, end);
-        },
+        ...mapGetters([
+            "getTaskList",
+            "getPage",
+            "paginationPageList"
+        ]),
 
         createTaskId() {
-            if (this.taskList[0]) {
-                return this.taskList[0].id + 1;
+            if (this.getTaskList[0]) {
+                return this.getTaskList[0].id + 1;
             } else {
                 return 0;
             }
         },
     },
     methods: {
+        ...mapMutations([
+            "increment_page",
+            "decrement_page",
+            "page_amount",
+            "set_taskList"
+        ]),
+
+        ...mapActions([
+            "get_Tasks",
+            "save_NewTasks",
+            "delete_Tasks",
+            "edit_Tasks"
+        ]),
+
         addTask() {
-            this.taskList.unshift({
+            this.save_NewTasks({
                 id: this.createTaskId,
                 title: this.newTask,
                 completed: false,
                 edit: false,
             });
-            this.resetData();
+            this.clearTask();
+            if (this.$route.params.id != 1) {
+                this.resetData();
+            }
         },
 
         deleteTask(item) {
-            this.taskList = this.taskList.filter((task) => item !== task);
+            this.delete_Tasks(item);
             this.checkPage();
         },
 
@@ -142,13 +136,13 @@ export default {
         },
 
         taskNumber(item) {
-            return `${this.taskList.indexOf(item) + 1})`;
+            return `${this.getTaskList.indexOf(item) + 1})`;
         },
 
         checkPage() {
-            if (this.paginationPageList.length === 0 && this.page > 1) {
-                this.page -= 1;
-                this.$router.push({ name: "page", params: { id: this.page } });
+            if (this.paginationPageList.length === 0 && this.getPage > 1) {
+                this.decrement_page();
+                this.$router.push({ name: "page", params: { id: this.getPage } });
             }
         },
 
@@ -172,34 +166,36 @@ export default {
         acceptEdit(item) {
             item.title = this.editTask;
             this.editedTask(item);
+            this.edit_Tasks();
         },
 
         forwardPage() {
-            if (this.taskList.length > this.page * 10) {
-                this.page++;
+            if (this.getTaskList.length > this.getPage * 10) {
+                this.increment_page();
             }
-            this.$router.push({ name: "page", params: { id: this.page } });
+            this.$router.push({ name: "page", params: { id: this.getPage } });
         },
 
         backPage() {
-            if (this.page > 1) {
-                this.page--;
+            if (this.getPage > 1) {
+                this.decrement_page();
             }
-            this.$router.push({ name: "page", params: { id: this.page } });
+            this.$router.push({ name: "page", params: { id: this.getPage } });
         },
 
         resetData() {
-            this.newTask = "";
-            if (this.page !== 1) {
-                this.page = 1;
-                this.$router.push({ name: "page", params: { id: this.page } });
-            }
+            this.page_amount({ amount: 1 });
+            this.$router.push({ name: "page", params: { id: this.getPage } });
         },
     },
-    created() {
-        this.taskList.reverse();
-        this.page = this.$route.params.id;
-    }
+
+    mounted() {
+        if (!localStorage.taskList) {
+            this.get_Tasks();
+        }
+        this.page_amount({ amount: this.$route.params.id });
+        this.set_taskList();
+    },
 };
 </script>
 
