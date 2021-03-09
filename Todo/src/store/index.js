@@ -1,6 +1,6 @@
 import Vue from 'vue';
-import Vuex, { Store } from 'vuex';
-import axios from 'axios';
+import Vuex from 'vuex';
+import Axios from 'axios';
 
 Vue.use(Vuex);
 
@@ -9,9 +9,14 @@ export default new Vuex.Store({
     taskList: [],
     page: null,
   },
+
   getters: {
     getTaskList(state) {
       return state.taskList;
+    },
+
+    getTaskListLength(state, getters) {
+      return getters.getTaskList.length;
     },
 
     getPage(state) {
@@ -24,21 +29,26 @@ export default new Vuex.Store({
       return state.taskList.slice(start, end);
     }
   },
+
   mutations: {
-    save_localStorage(state, payload) {
+    saveInLocalStorage(state, payload) {
       localStorage.setItem('taskList', payload);
     },
 
-    set_taskList(state) {
-      let taskList = JSON.parse(localStorage.taskList);
-      state.taskList = taskList;
+    setTaskList(state) {
+      if (localStorage.taskList) {
+        let taskList = JSON.parse(localStorage.taskList);
+        state.taskList = taskList;
+      } else {
+        state.taskList = [];
+      }
     },
 
-    reverse_taskList(state, payload) {
+    reverseTaskList(state, payload) {
       payload.reverse();
     },
 
-    add_task(state, payload) {
+    addTaskInTaskList(state, payload) {
       state.taskList.unshift({
         id: payload.id,
         title: payload.title,
@@ -47,44 +57,45 @@ export default new Vuex.Store({
       });
     },
 
-    delete_task(state, payload) {
+    deleteTaskFromTaskList(state, payload) {
       state.taskList = state.taskList.filter((task) => payload !== task);
     },
 
-    increment_page(state) {
+    incrementPage(state) {
       state.page++;
     },
 
-    decrement_page(state) {
+    decrementPage(state) {
       state.page--;
     },
 
-    page_amount(state, payload) {
+    pageAmount(state, payload) {
       state.page = payload.amount;
     }
   },
+
   actions: {
-    async get_Tasks(context, payload) {
-      let { data } = await axios.get("../tasks.json");
-      context.commit('reverse_taskList', data);
-      context.commit('save_localStorage', JSON.stringify(data));
+    async getTasksFromJson(context) {
+      let { data } = await Axios.get("../tasks.json");
+      context.commit('reverseTaskList', data);
+      context.commit('saveInLocalStorage', JSON.stringify(data));
     },
 
-    save_NewTasks(context, payload) {
-      context.commit('add_task', payload);
+    addTaskInLocalStorage(context, payload) {
+      context.commit('addTaskInTaskList', payload);
       let data = context.state.taskList;
-      context.commit('save_localStorage', JSON.stringify(data));
+      context.commit('saveInLocalStorage', JSON.stringify(data));
     },
 
-    delete_Tasks(context, payload) {
-      context.commit('delete_task', payload);
+    deleteTaskFromLocalStorage(context, payload) {
+      context.commit('deleteTaskFromTaskList', payload);
       let data = context.state.taskList;
-      context.commit('save_localStorage', JSON.stringify(data));
+      context.commit('saveInLocalStorage', JSON.stringify(data));
     },
 
-    edit_Tasks(context) {
+    editTaskInLocalStorage(context) {
       let data = context.state.taskList;
-      context.commit('save_localStorage', JSON.stringify(data));
+      context.commit('saveInLocalStorage', JSON.stringify(data));
     }
   }
 });
