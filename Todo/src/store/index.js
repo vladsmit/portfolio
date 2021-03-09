@@ -75,27 +75,27 @@ export default new Vuex.Store({
   },
 
   actions: {
-    async getTasksFromJson(context) {
+    async getTasksFromJson({ commit }) {
       let { data } = await Axios.get("../tasks.json");
-      context.commit('reverseTaskList', data);
-      context.commit('saveInLocalStorage', JSON.stringify(data));
+      commit('reverseTaskList', data);
+      commit('saveInLocalStorage', JSON.stringify(data));
     },
 
-    addTaskInLocalStorage(context, payload) {
-      context.commit('addTaskInTaskList', payload);
-      let data = context.state.taskList;
-      context.commit('saveInLocalStorage', JSON.stringify(data));
+    addTaskInLocalStorage({ commit, state }, payload) {
+      commit('addTaskInTaskList', payload);
+      let data = state.taskList;
+      commit('saveInLocalStorage', JSON.stringify(data));
     },
 
-    deleteTaskFromLocalStorage(context, payload) {
-      context.commit('deleteTaskFromTaskList', payload);
-      let data = context.state.taskList;
-      context.commit('saveInLocalStorage', JSON.stringify(data));
+    deleteTaskFromLocalStorage({ commit, state }, payload) {
+      commit('deleteTaskFromTaskList', payload);
+      let data = state.taskList;
+      commit('saveInLocalStorage', JSON.stringify(data));
     },
 
-    editTaskInLocalStorage(context) {
-      let data = context.state.taskList;
-      context.commit('saveInLocalStorage', JSON.stringify(data));
+    editTaskInLocalStorage({ commit, state }) {
+      let data = state.taskList;
+      commit('saveInLocalStorage', JSON.stringify(data));
     }
   }
 });
