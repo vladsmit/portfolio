@@ -1,5 +1,6 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
@@ -29,7 +30,7 @@ module.exports = {
     devServer: {
         port: 8080,
         historyApiFallback: {
-            index: '/dist/build/index.html'
+            index: '/index.html'
         }
     },
     resolve: {
@@ -49,6 +50,7 @@ module.exports = {
             template: 'public/index.html',
             filename: 'index.html'
         }),
+        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: 'styles/[name].css',
             chunkFilename: '[id].css',

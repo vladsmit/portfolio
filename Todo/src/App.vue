@@ -24,9 +24,13 @@ export default {
     mounted() {
         if (!localStorage.taskList) {
             this.getTasksFromJson();
+        } else {
+            this.setTaskList();
         }
-        this.setTaskList();
-        if (
+
+        if (Math.ceil(this.getTaskListLength / 10) === 0) {
+            this.pageAmount({ amount: this.$route.params.id });
+        } else if (
             this.$route.params.id > Math.ceil(this.getTaskListLength / 10) ||
             /\D/.test(this.$route.params.id)
         ) {

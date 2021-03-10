@@ -79,6 +79,7 @@ export default new Vuex.Store({
       let { data } = await Axios.get("../tasks.json");
       commit('reverseTaskList', data);
       commit('saveInLocalStorage', JSON.stringify(data));
+      commit('setTaskList');
     },
 
     addTaskInLocalStorage({ commit, state }, payload) {
