@@ -18,10 +18,6 @@ export default new Vuex.Store({
     getAccounts(state) {
       return state.accounts;
     },
-
-    getAccountsLength(state, getters) {
-      return getters.getAccounts.length;
-    }
   },
   
   mutations: {

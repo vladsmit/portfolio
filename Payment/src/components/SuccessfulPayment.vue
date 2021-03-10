@@ -14,23 +14,23 @@
             </ul>
             <ul class="success__list">
                 <li class="success__list--item">
-                    {{ getAccounts[getAccountsLength - 1].id }}
+                    {{ getAccounts[getAccounts.length - 1].id }}
                 </li>
                 <li class="success__list--item">
-                    {{ getAccounts[getAccountsLength - 1].accountNumber }}
+                    {{ getAccounts[getAccounts.length - 1].accountNumber }}
                 </li>
                 <li class="success__list--item">
-                    {{ getAccounts[getAccountsLength - 1].sum }} руб.
+                    {{ getAccounts[getAccounts.length - 1].sum }} руб.
                 </li>
                 <li class="success__list--item">
                     **** **** ****
-                    {{ getAccounts[getAccountsLength - 1].cardNumber }}
+                    {{ getAccounts[getAccounts.length - 1].cardNumber }}
                 </li>
                 <li class="success__list--item">
-                    {{ getAccounts[getAccountsLength - 1].owner }}
+                    {{ getAccounts[getAccounts.length - 1].owner }}
                 </li>
                 <li class="success__list--item">
-                    {{ getAccounts[getAccountsLength - 1].date }}
+                    {{ getAccounts[getAccounts.length - 1].date }}
                 </li>
             </ul>
         </div>
@@ -50,7 +50,7 @@ export default {
     },
     
     computed: {
-        ...mapGetters(["getAccounts", "getAccountsLength"]),
+        ...mapGetters(["getAccounts"]),
     },
     
     methods: {
