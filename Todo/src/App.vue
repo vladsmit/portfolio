@@ -14,7 +14,7 @@ export default {
         TaskField,
     },
     computed: {
-        ...mapGetters(["getPage", "getTaskListLength"]),
+        ...mapGetters(["getPage", "getTaskList"]),
     },
     methods: {
         ...mapMutations(["pageAmount", "setTaskList"]),
@@ -28,10 +28,10 @@ export default {
             this.setTaskList();
         }
 
-        if (Math.ceil(this.getTaskListLength / 10) === 0) {
+        if (!this.getTaskList.length) {
             this.pageAmount({ amount: this.$route.params.id });
         } else if (
-            this.$route.params.id > Math.ceil(this.getTaskListLength / 10) ||
+            this.$route.params.id > Math.ceil(this.getTaskList.length / 10) ||
             /\D/.test(this.$route.params.id)
         ) {
             this.pageAmount({ amount: 1 });

@@ -15,10 +15,6 @@ export default new Vuex.Store({
       return state.taskList;
     },
 
-    getTaskListLength(state, getters) {
-      return getters.getTaskList.length;
-    },
-
     getPage(state) {
       return state.page;
     },
