@@ -2,12 +2,12 @@
     <div>
         <template v-if="!task.edit">
             <p class="task__title" @click="doneTask(task)">
-                {{ taskNumber(task) }} {{ task.title }}
+                {{ getTaskNumber(task) }} {{ task.title }}
             </p>
             <input
                 type="button"
                 class="task__editIcon"
-                @click="editedTask(task)"
+                @click="editTask(task)"
             />
             <input
                 type="button"
@@ -50,7 +50,7 @@ export default {
             this.checkPage();
         },
 
-        taskNumber(item) {
+        getTaskNumber(item) {
             return `${this.getTaskList.indexOf(item) + 1})`;
         },
 
@@ -66,7 +66,7 @@ export default {
             this.editTaskInLocalStorage();
         },
 
-        editedTask(item) {
+        editTask(item) {
             item.edit = !item.edit;
             item.editTask = item.title;
         },

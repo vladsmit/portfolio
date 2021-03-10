@@ -18,7 +18,7 @@
             <Task
                 v-for="task in paginationPageList"
                 :key="task.id"
-                :class="className(task)"
+                :class="addClassName(task)"
                 :task="task"
             />
         </div>
@@ -39,7 +39,7 @@
             v-if="newTask"
             type="button"
             class="btn btn-danger btn--margin"
-            @click="clearTask"
+            @click="clearTextarea"
         >
             Стереть
         </button>
@@ -83,23 +83,23 @@ export default {
                 completed: false,
                 edit: false,
             });
-            this.clearTask(event);
+            this.clearTextarea(event);
             if (parseInt(this.$route.params.id) !== 1) {
-                this.resetData();
+                this.resetPage();
             }
         },
 
-        clearTask(event) {
+        clearTextarea(event) {
             event.preventDefault();
             this.newTask = "";
         },
 
-        resetData() {
+        resetPage() {
             this.pageAmount({ amount: 1 });
             this.$router.push({ name: "page", params: { id: this.getPage } });
         },
 
-        className(item) {
+        addClassName(item) {
             let classes = ["task"];
             if (item.completed) {
                 classes.push("task__doneTask");
