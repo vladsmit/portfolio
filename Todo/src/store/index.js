@@ -35,8 +35,6 @@ export default new Vuex.Store({
       if (localStorage.taskList) {
         let taskList = JSON.parse(localStorage.taskList);
         state.taskList = taskList;
-      } else {
-        state.taskList = [];
       }
     },
 

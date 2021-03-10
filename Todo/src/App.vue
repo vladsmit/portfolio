@@ -32,10 +32,8 @@ export default {
             this.setTaskList();
         }
 
-        if (!this.getTaskList.length) {
-            this.pageAmount({ amount: this.$route.params.id });
-        } else if (
-            this.$route.params.id > Math.ceil(this.getTaskList.length / 10) ||
+        if (
+            (this.$route.params.id > Math.ceil(this.getTaskList.length / 10) && this.getTaskList.length) ||
             /\D/.test(this.$route.params.id)
         ) {
             this.pageAmount({ amount: 1 });
