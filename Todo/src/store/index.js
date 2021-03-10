@@ -28,7 +28,7 @@ export default new Vuex.Store({
 
   mutations: {
     saveInLocalStorage(state, payload) {
-      localStorage.setItem('taskList', payload);
+      localStorage.setItem('taskList', JSON.stringify(payload));
     },
 
     setTaskList(state) {
@@ -74,25 +74,18 @@ export default new Vuex.Store({
     async getTasksFromJson({ commit }) {
       let { data } = await Axios.get("../tasks.json");
       commit('reverseTaskList', data);
-      commit('saveInLocalStorage', JSON.stringify(data));
+      commit('saveInLocalStorage', data);
       commit('setTaskList');
     },
 
     addTaskInLocalStorage({ commit, state }, payload) {
       commit('addTaskInTaskList', payload);
-      let data = state.taskList;
-      commit('saveInLocalStorage', JSON.stringify(data));
+      commit('saveInLocalStorage', state.taskList);
     },
 
     deleteTaskFromLocalStorage({ commit, state }, payload) {
       commit('deleteTaskFromTaskList', payload);
-      let data = state.taskList;
-      commit('saveInLocalStorage', JSON.stringify(data));
+      commit('saveInLocalStorage', state.taskList);
     },
-
-    editTaskInLocalStorage({ commit, state }) {
-      let data = state.taskList;
-      commit('saveInLocalStorage', JSON.stringify(data));
-    }
   }
 });

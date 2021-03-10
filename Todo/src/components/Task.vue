@@ -44,9 +44,9 @@ export default {
     },
     
     methods: {
-        ...mapMutations(["decrementPage"]),
+        ...mapMutations(["decrementPage", "saveInLocalStorage"]),
 
-        ...mapActions(["deleteTaskFromLocalStorage", "editTaskInLocalStorage"]),
+        ...mapActions(["deleteTaskFromLocalStorage"]),
 
         deleteTask(item) {
             this.deleteTaskFromLocalStorage(item);
@@ -66,7 +66,7 @@ export default {
 
         doneTask(item) {
             item.completed = !item.completed;
-            this.editTaskInLocalStorage();
+            this.saveInLocalStorage(this.getTaskList);
         },
 
         editTask(item) {
@@ -78,7 +78,7 @@ export default {
             item.title = item.editTask;
             item.edit = !item.edit;
             item.editTask = "";
-            this.editTaskInLocalStorage();
+            this.saveInLocalStorage(this.getTaskList);
         },
     },
 };
