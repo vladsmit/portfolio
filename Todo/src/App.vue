@@ -10,17 +10,21 @@ import TaskField from "@/components/TaskField.vue";
 
 export default {
     name: "App",
+
     components: {
         TaskField,
     },
+
     computed: {
         ...mapGetters(["getPage", "getTaskList"]),
     },
+
     methods: {
         ...mapMutations(["pageAmount", "setTaskList"]),
 
         ...mapActions(["getTasksFromJson"]),
     },
+    
     mounted() {
         if (!localStorage.taskList) {
             this.getTasksFromJson();

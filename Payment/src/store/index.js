@@ -9,6 +9,7 @@ export default new Vuex.Store({
     validationPassed: false,
     accounts: []
   },
+  
   getters: {
     getValidationStatus(state) {
       return state.validationPassed;
@@ -22,6 +23,7 @@ export default new Vuex.Store({
       return getters.getAccounts.length;
     }
   },
+  
   mutations: {
     changeValidationPassed(state) {
       state.validationPassed = !state.validationPassed;
@@ -38,5 +40,6 @@ export default new Vuex.Store({
       }];
     }
   },
+  
   plugins: [createPersistedState()]
 });

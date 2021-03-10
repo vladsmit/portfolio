@@ -39,6 +39,7 @@ import { mapGetters } from 'vuex';
 
 export default {
     name: "PaymentHistory",
+    
     computed: {
         ...mapGetters(["getAccounts"]),
     }

@@ -36,10 +36,13 @@ import { mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
     name: "Task",
+
     props: ["task"],
+    
     computed: {
         ...mapGetters(["getTaskList", "getPage", "paginationPageList"]),
     },
+    
     methods: {
         ...mapMutations(["decrementPage"]),
 

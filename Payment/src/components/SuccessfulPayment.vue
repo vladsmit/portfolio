@@ -43,13 +43,16 @@ import { mapGetters, mapMutations } from "vuex";
 
 export default {
     name: "SuccessfulPayment",
+    
     beforeRouteLeave(to, from, next) {
         this.changeValidationPassed();
         next();
     },
+    
     computed: {
         ...mapGetters(["getAccounts", "getAccountsLength"]),
     },
+    
     methods: {
         ...mapMutations(["changeValidationPassed"]),
     }

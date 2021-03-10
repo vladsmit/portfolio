@@ -196,7 +196,9 @@ const correctOwner = helpers.regex("correctOwner", /^[A-Z]{2,}\s[A-Z]{2,}$/);
 
 export default {
     mixins: [validationMixin],
+    
     name: "ValidateForm",
+    
     data() {
         return {
             form: {
@@ -291,6 +293,7 @@ export default {
             ],
         };
     },
+    
     validations: {
         form: {
             accountNumber: {
@@ -335,6 +338,7 @@ export default {
             },
         },
     },
+    
     computed: {
         ...mapGetters(["getValidationStatus"]),
 
@@ -348,6 +352,7 @@ export default {
             return date.toLocaleString("ru", options);
         },
     },
+    
     methods: {
         ...mapMutations(["changeValidationPassed", "addPayment"]),
 

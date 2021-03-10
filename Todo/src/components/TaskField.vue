@@ -52,14 +52,17 @@ import Task from "@/components/Task.vue";
 
 export default {
     name: "TaskField",
+    
     components: {
         Task,
     },
+    
     data() {
         return {
             newTask: "",
         };
     },
+    
     computed: {
         ...mapGetters(["getTaskList", "getPage", "paginationPageList"]),
 
@@ -71,6 +74,7 @@ export default {
             }
         },
     },
+    
     methods: {
         ...mapMutations(["incrementPage", "decrementPage", "pageAmount"]),
 
