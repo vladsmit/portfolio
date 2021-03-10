@@ -14,23 +14,23 @@
             </ul>
             <ul class="success__list">
                 <li class="success__list--item">
-                    {{ this.$store.state.accounts[this.$store.state.accounts.length - 1].id }}
+                    {{ getAccounts[getAccountsLength - 1].id }}
                 </li>
                 <li class="success__list--item">
-                    {{ this.$store.state.accounts[this.$store.state.accounts.length - 1].accountNumber }}
+                    {{ getAccounts[getAccountsLength - 1].accountNumber }}
                 </li>
                 <li class="success__list--item">
-                    {{ this.$store.state.accounts[this.$store.state.accounts.length - 1].sum }} руб.
+                    {{ getAccounts[getAccountsLength - 1].sum }} руб.
                 </li>
                 <li class="success__list--item">
                     **** **** ****
-                    {{ this.$store.state.accounts[this.$store.state.accounts.length - 1].cardNumber }}
+                    {{ getAccounts[getAccountsLength - 1].cardNumber }}
                 </li>
                 <li class="success__list--item">
-                    {{ this.$store.state.accounts[this.$store.state.accounts.length - 1].owner }}
+                    {{ getAccounts[getAccountsLength - 1].owner }}
                 </li>
                 <li class="success__list--item">
-                    {{ this.$store.state.accounts[this.$store.state.accounts.length - 1].date }}
+                    {{ getAccounts[getAccountsLength - 1].date }}
                 </li>
             </ul>
         </div>
@@ -39,12 +39,20 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
+
 export default {
     name: "SuccessfulPayment",
     beforeRouteLeave(to, from, next) {
-        this.$store.commit("changeValidationPassed");
+        this.changeValidationPassed();
         next();
     },
+    computed: {
+        ...mapGetters(["getAccounts", "getAccountsLength"]),
+    },
+    methods: {
+        ...mapMutations(["changeValidationPassed"]),
+    }
 };
 </script>
 

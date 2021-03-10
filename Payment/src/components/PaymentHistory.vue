@@ -4,13 +4,15 @@
         <div class="table__title--wrapper">
             <p class="table__title__item table__title__item--1">Номер счета</p>
             <p class="table__title__item table__title__item--2">Сумма</p>
-            <p class="table__title__item table__title__item--3">Дата транзакции</p>
+            <p class="table__title__item table__title__item--3">
+                Дата транзакции
+            </p>
         </div>
         <div class="table--wrapper">
             <div
-                class="table__content--wrapper"
-                v-for="(account, index) in this.$store.state.accounts"
+                v-for="(account, index) in getAccounts"
                 :key="index"
+                class="table__content--wrapper"
             >
                 <p class="table__content__item table__content__item--1">
                     {{ account.accountNumber }}
@@ -23,13 +25,23 @@
                 </p>
             </div>
         </div>
-        <input type="button" value="Вернуться в кабинет" class="button button--margin" @click="$router.push({name: 'validateForm'})" />
+        <input
+            type="button"
+            value="Вернуться в кабинет"
+            class="button button--margin"
+            @click="$router.push({ name: 'validateForm' })"
+        />
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
     name: "PaymentHistory",
+    computed: {
+        ...mapGetters(["getAccounts"]),
+    }
 };
 </script>
 

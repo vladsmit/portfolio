@@ -5,12 +5,12 @@
             <div class="paymentInfo__account--margin">
                 <label for="account" class="subtitle">Номер счёта:</label>
                 <input
+                    v-model="form.accountNumber"
                     type="text"
                     maxlength="12"
                     id="account"
                     class="paymentInfo__accountInput paymentInfo__accountInput--margin"
                     :class="$v.form.accountNumber.$error ? 'isInvalid' : ''"
-                    v-model="form.accountNumber"
                 />
                 <span
                     v-if="
@@ -26,11 +26,11 @@
             <div>
                 <label for="sum" class="subtitle">Сумма платежа:</label>
                 <input
+                    v-model="form.sum"
                     type="text"
                     id="sum"
                     class="paymentInfo__sumInput paymentInfo__sumInput--margin"
                     :class="$v.form.sum.$error ? 'isInvalid' : ''"
-                    v-model="form.sum"
                 /><span class="paymentInfo__sumCurrency">руб.</span>
                 <span
                     v-if="
@@ -51,33 +51,33 @@
                 <div class="bankInfo__front__cardNumber--wrapper">
                     <label for="cardNumber" class="subtitle blockSettings">Номер карты</label>
                     <input
+                        v-model="form.cardNumber.slot1"
                         type="text"
                         maxlength="4"
                         id="cardNumber"
                         class="bankInfo__front__cardNumber"
                         :class="$v.form.cardNumber.slot1.$error ? 'isInvalid' : ''"
-                        v-model="form.cardNumber.slot1"
                     />
                     <input
+                        v-model="form.cardNumber.slot2"
                         type="text"
                         maxlength="4"
                         class="bankInfo__front__cardNumber"
                         :class="$v.form.cardNumber.slot2.$error ? 'isInvalid' : ''"
-                        v-model="form.cardNumber.slot2"
                     />
                     <input
+                        v-model="form.cardNumber.slot3"
                         type="text"
                         maxlength="4"
                         class="bankInfo__front__cardNumber"
                         :class="$v.form.cardNumber.slot3.$error ? 'isInvalid' : ''"
-                        v-model="form.cardNumber.slot3"
                     />
                     <input
+                        v-model="form.cardNumber.slot4"
                         type="text"
                         maxlength="4"
                         class="bankInfo__front__cardNumber"
                         :class="$v.form.cardNumber.slot4.$error ? 'isInvalid' : ''"
-                        v-model="form.cardNumber.slot4"
                     />
                 </div>
                 <span
@@ -103,27 +103,27 @@
                 <div class="bankInfo__front__cardPeriod--wrapper">
                     <label for="cardPeriod" class="subtitle blockSettings">Срок действия</label>
                     <select
-                        id="cardPeriodMonth"
                         v-model="form.month"
+                        id="cardPeriodMonth"
                         class="bankInfo__front__cardPeriod"
                     >
                         <option
                             v-for="(month, index) in months"
-                            :value="month.value"
                             :key="index"
+                            :value="month.value"
                         >
                             {{ month.label }}
                         </option>
                     </select>
                     <select
-                        id="cardPeriodYear"
                         v-model="form.year"
+                        id="cardPeriodYear"
                         class="bankInfo__front__cardPeriod"
                     >
                         <option
                             v-for="(year, index) in years"
-                            :value="year.value"
                             :key="index"
+                            :value="year.value"
                         >
                             {{ year.label }}
                         </option>
@@ -139,11 +139,11 @@
                     Допустимы только заглавные латинские буквы
                 </span>
                 <input
+                    v-model="form.owner"
                     type="text"
                     placeholder="Держатель карты"
                     class="bankInfo__front__cardOwner"
                     :class="$v.form.owner.$error ? 'isInvalid' : ''"
-                    v-model="form.owner"
                 />
             </div>
             <div class="bankInfo__back">
@@ -151,12 +151,12 @@
                 <div class="bankInfo__back__code--wrapper">
                     <label for="cvvCode" class="subtitle">Код CVV2/CVC2</label>
                     <input
+                        v-model="form.code"
                         type="text"
                         maxlength="3"
                         id="cvvCode"
                         class="bankInfo__back__code"
                         :class="$v.form.code.$error ? 'isInvalid' : ''"
-                        v-model="form.code"
                     />
                     <img
                         src="@/assets/question.png"
@@ -190,6 +190,8 @@
 <script>
 import { validationMixin } from "vuelidate";
 import { required, minLength, minValue, numeric, helpers } from "vuelidate/lib/validators";
+import { mapGetters, mapMutations } from 'vuex';
+
 const correctOwner = helpers.regex("correctOwner", /^[A-Z]{2,}\s[A-Z]{2,}$/);
 
 export default {
@@ -334,6 +336,8 @@ export default {
         },
     },
     computed: {
+        ...mapGetters(["getValidationStatus"]),
+
         createDate() {
             let date = new Date();
             let options = {
@@ -345,18 +349,20 @@ export default {
         },
     },
     methods: {
+        ...mapMutations(["changeValidationPassed", "addPayment"]),
+
         checkForm() {
             this.$v.form.$touch();
             if (!this.$v.form.$error) {
-                this.$store.commit("addPayment", {
+                this.addPayment({
                     accountNumber: this.form.accountNumber,
                     sum: this.form.sum,
                     cardNumber: this.form.cardNumber.slot4,
                     owner: this.form.owner,
                     date: this.createDate,
                 });
-                if (!this.$store.state.validationPassed) {
-                    this.$store.commit("changeValidationPassed");
+                if (!this.getValidationStatus) {
+                    this.changeValidationPassed();
                 }
                 this.$router.push({ name: "successfulPayment" });
             }

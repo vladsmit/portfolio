@@ -9,10 +9,24 @@ export default new Vuex.Store({
     validationPassed: false,
     accounts: []
   },
+  getters: {
+    getValidationStatus(state) {
+      return state.validationPassed;
+    },
+
+    getAccounts(state) {
+      return state.accounts;
+    },
+
+    getAccountsLength(state, getters) {
+      return getters.getAccounts.length;
+    }
+  },
   mutations: {
     changeValidationPassed(state) {
       state.validationPassed = !state.validationPassed;
     },
+
     addPayment(state, payload) {
       state.accounts = [...state.accounts, {
         id: state.accounts.length + 1,
