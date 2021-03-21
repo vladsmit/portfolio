@@ -101,9 +101,9 @@ body {
 
 .chatBlock__list__item {
   width: 100%;
+  min-height: 48px;
   display: block;
   text-align: center;
-  line-height: 48px;
   text-decoration: none;
   cursor: pointer;
   color: black;
@@ -111,7 +111,7 @@ body {
   border-bottom: 2px solid lightslategrey;
   background-color: lightgray;
   border-radius: 5px;
-  padding: 0 5px;
+  padding: 12px 5px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   overflow: hidden;

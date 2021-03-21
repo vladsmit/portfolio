@@ -22,7 +22,7 @@ const initStore = {
 
 export default function chatReducer(store = initStore, action) {
     switch (action.type) {
-        case ADD_MESSAGE: {
+        case ADD_MESSAGE:
             const messageId = Object.keys(store.messages).length + 1;
             return update(store, {
                 messages: {
@@ -41,8 +41,7 @@ export default function chatReducer(store = initStore, action) {
                     }
                 },
             });
-        }
-        case REMOVE_MESSAGE: {
+        case REMOVE_MESSAGE:
             let deleteMsg = store.chats[action.chatId].messageList.find(message => message === action.messageId);
             store.chats[action.chatId].messageList.splice(store.chats[action.chatId].messageList.indexOf(deleteMsg), 1);
             return update(store, {
@@ -52,8 +51,7 @@ export default function chatReducer(store = initStore, action) {
                     }
                 }
             });
-        }
-        case ADD_CHAT: {
+        case ADD_CHAT:
             let chatId;
             for (let i = 0, j = 1; i < Object.keys(store.chats).length; i++, j++) {
                 if (Object.keys(store.chats)[i] != j) {
@@ -72,8 +70,7 @@ export default function chatReducer(store = initStore, action) {
                     }
                 },
             });
-        }
-        case REMOVE_CHAT: {
+        case REMOVE_CHAT:
             delete store.chats[action.chatId];
             return update(store, {
                 chats: {
@@ -82,7 +79,6 @@ export default function chatReducer(store = initStore, action) {
                     }
                 },
             });
-        }
         default:
             return store;
     }

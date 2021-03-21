@@ -78,16 +78,16 @@ body {
 
 .chatBlock__list__item {
     width: 100%;
+    min-height: 48px;
     display: block;
     text-align: center;
-    line-height: 48px;
     text-decoration: none;
     cursor: pointer;
     color: black;
     font-size: 20px;
     border-bottom: 2px solid lightslategrey;
     @include mainFrame(lightgray);
-    padding: 0 5px;
+    padding: 12px 5px;
     box-sizing: border-box;
     overflow: hidden;
     text-overflow: ellipsis;
