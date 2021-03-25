@@ -1,6 +1,6 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
@@ -37,6 +37,7 @@ module.exports = {
         extensions: ['.jsx', '.js'],
         alias: {
             '@styles': path.resolve(__dirname, 'src', 'styles'),
+            '@pages': path.resolve(__dirname, 'src', 'pages'),
             '@components': path.resolve(__dirname, 'src', 'components'),
             '@containers': path.resolve(__dirname, 'src', 'containers'),
             '@store': path.resolve(__dirname, 'src', 'store'),
@@ -48,7 +49,8 @@ module.exports = {
     plugins: [
         new HTMLWebpackPlugin({
             template: 'public/index.html',
-            filename: 'index.html'
+            filename: 'index.html',
+            favicon: 'public/favicon.png'
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
