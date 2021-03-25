@@ -8,22 +8,22 @@ const routes = [
   {
     path: '/payments',
     name: 'validateForm',
-    component: () => import('@/components/ValidateForm.vue')
+    component: () => import('@/pages/ValidateForm.vue')
   },
   {
     path: '/history',
     name: 'paymentHistory',
-    component: () => import('@/components/PaymentHistory.vue')
+    component: () => import('@/pages/PaymentHistory.vue')
   },
   {
     path: '/success',
     name: 'successfulPayment',
-    component: () => import('@/components/SuccessfulPayment.vue')
+    component: () => import('@/pages/SuccessfulPayment.vue')
   },
   {
     path: '/404',
     name: 'error',
-    component: () => import('@/components/Error.vue')
+    component: () => import('@/pages/Error.vue')
   },
   {
     path: '/',
