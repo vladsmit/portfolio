@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-import './styles.css';
+import './styles.scss';
 
 const MessageSender = (props) => {
-    const inputFocus = React.createRef();
+    const inputFocus = useRef(null);
 
     useEffect(() => {
         inputFocus.current.focus();

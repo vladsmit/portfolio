@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import connect from 'react-redux/es/connect/connect';
 import { bindActionCreators } from 'redux';
@@ -13,11 +13,17 @@ const MessageField = (props) => {
     });
 
     useEffect(() => {
-        updateScroll();
+        handleScrollToBottom();
     });
 
-    const handleClick = useCallback(event => {
-        event.preventDefault();
+    const cardEndRef = useRef(null);
+
+    const handleScrollToBottom = useCallback(() => {
+        cardEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }, []);
+
+    const handleClick = useCallback(e => {
+        e.preventDefault();
         handleSendMessage(value, 'Влад');
     }, [props.messages, props.chats, value]);
 
@@ -40,10 +46,7 @@ const MessageField = (props) => {
         props.removeMessage(props.chatId, messageId);
     }, [props.chats, props.chatId]);
 
-    const updateScroll = () => {
-        let messageList = document.querySelector('.msgField');
-        messageList.scrollTop = messageList.scrollHeight;
-    };
+
 
     let messageElement = props.chats[props.chatId].messageList.map((messageId, i) => <Message key={i} text={props.messages[messageId].text} sender={props.messages[messageId].sender} removeMessage={() => handleRemoveMessage(messageId)} />);
 
@@ -51,6 +54,7 @@ const MessageField = (props) => {
         <main className="msgField--wrapper">
             <div className="msgField">
                 {messageElement}
+                <div className="msgField--bottom" ref={cardEndRef}></div>
             </div>
             <MessageSender onClick={handleClick} input={value} onChange={handleChangeValue} />
         </main>

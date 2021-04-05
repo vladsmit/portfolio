@@ -1,0 +1,42 @@
+.chatBlock {
+    &__createForm {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        &--margin {
+            margin-top: 12px;
+        }
+        &__titleInput {
+            width: 80%;
+            line-height: 25px;
+            border-radius: 5px;
+            border: none;
+            &--margin {
+                margin-bottom: 5px;
+            }
+        }
+    }
+}
+  
+.chatBtn {
+    background-color: cornsilk;
+    border-radius: 5px;
+    border: none;
+    line-height: 25px;
+    font-size: 16px;
+    padding: 1px 6px;
+    box-shadow: 2px 2px 12px 1px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: ease-out 300ms background-color, 300ms color;
+    &--margin {
+        margin-top: 5px;
+    }
+    &:hover {
+        background-color: lightslategrey;
+        color: cornsilk;
+    }
+    &:active {
+        background-color: cornsilk;
+    }
+}

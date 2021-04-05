@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import Layout from '@pages/Layout';
-import Profile from '@pages/Profile';
-import Error from '@pages/Error';
+import Layout from '@containers/Layout';
+import Profile from '@containers/Profile';
+import Error from '@containers/Error';
 
 const Router = (props) => {
     return (

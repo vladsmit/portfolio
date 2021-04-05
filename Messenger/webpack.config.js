@@ -37,7 +37,6 @@ module.exports = {
         extensions: ['.jsx', '.js'],
         alias: {
             '@styles': path.resolve(__dirname, 'src', 'styles'),
-            '@pages': path.resolve(__dirname, 'src', 'pages'),
             '@components': path.resolve(__dirname, 'src', 'components'),
             '@containers': path.resolve(__dirname, 'src', 'containers'),
             '@store': path.resolve(__dirname, 'src', 'store'),
@@ -54,8 +53,7 @@ module.exports = {
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: 'styles/[name].css',
-            chunkFilename: '[id].css',
+            filename: '[name].css'
         }),
         new CopyWebpackPlugin({
             patterns: [
@@ -91,8 +89,17 @@ module.exports = {
                 ]
             },
             {
-                test: /\.css$/i,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+                test: /\.(css|scss)$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: './src'
+                        }
+                    },
+                    { loader: "css-loader" },
+                    { loader: "sass-loader" }
+                ]
             },
             {
                 test: /\.(png|gif|jpg|svg)$/,

@@ -12,7 +12,7 @@ const ChatList = (props) => {
         return '';
     });
 
-const chatElements = Object.entries(props.chats).map(([key, value], i) => (<li key={i} className={props.chats[key].blink ? "chatBlock__list__item chatBlock__list__item--animation" : "chatBlock__list__item"} onClick={() => handleNavigate(`/chat/${key}`)}>{value.title}</li>));
+    const chatElements = Object.entries(props.chats).map(([key, value], i) => (<li key={i} className={props.chats[key].blink ? "chatBlock__list__item chatBlock__list__item--animation" : "chatBlock__list__item"} onClick={() => handleNavigate(`/chat/${key}`)}>{value.title}</li>));
 
     const handleChatTitle = useCallback(e => {
         setTitle(() => {
