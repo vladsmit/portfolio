@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Canvas Project: Paint Imitation</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="tools">
+            <label for="fillColor">Цвет заливки:
+                <select name="fill" id="fillColor">
+                    <option value="magenta" selected>Magenta</option>
+                    <option value="blue">Blue</option>
+                    <option value="black">Black</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="green">Green</option>
+                    <option value="red">Red</option>
+                </select>
+            </label>
+            <label for="lineWidth" class="lineWidthLabel">Толщина линии: <span class="lineWidthValue"></span>
+                <input type="range" min="1" max="20" name="lineWidth" id="lineWidth" value="10">
+            </label>
+            <input type="button" value="Очистить холст" class="button" data-name="clear">
+            <input type="button" value="Сохранить в память" class="button" data-name="save">
+            <input type="button" value="Удалить из памяти" class="button" data-name="delete">
+            <input type="button" value="Повторить по памяти" class="button" data-name="repeat">
+        </div>
+        <canvas id="canvas">Здесь должен быть холст...</canvas>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
