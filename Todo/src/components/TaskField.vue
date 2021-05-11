@@ -78,7 +78,7 @@ export default {
     methods: {
         ...mapMutations(["incrementPage", "decrementPage", "pageAmount"]),
 
-        ...mapActions(["addTaskInLocalStorage"]),
+        ...mapActions(["loadingPage", "addTaskInLocalStorage"]),
 
         addTask(event) {
             this.addTaskInLocalStorage({
@@ -113,6 +113,7 @@ export default {
 
         forwardPage() {
             if (this.getTaskList.length > this.getPage * 10) {
+                this.loadingPage();
                 this.incrementPage();
             }
             this.$router.push({ name: "page", params: { id: this.getPage } });
@@ -120,6 +121,7 @@ export default {
 
         backPage() {
             if (this.getPage > 1) {
+                this.loadingPage();
                 this.decrementPage();
             }
             this.$router.push({ name: "page", params: { id: this.getPage } });

@@ -8,9 +8,14 @@ export default new Vuex.Store({
   state: {
     taskList: [],
     page: null,
+    loading: false
   },
 
   getters: {
+    getLoadingStatus(state) {
+      return state.loading;
+    },
+
     getTaskList(state) {
       return state.taskList;
     },
@@ -27,6 +32,10 @@ export default new Vuex.Store({
   },
 
   mutations: {
+    isLoading(state, payload) {
+      state.loading = payload;
+    },
+
     saveInLocalStorage(state, payload) {
       localStorage.setItem('taskList', JSON.stringify(payload));
     },
@@ -70,10 +79,14 @@ export default new Vuex.Store({
 
   actions: {
     async getTasksFromJson({ commit }) {
+      commit('isLoading', true);
       let { data } = await Axios.get("../tasks.json");
-      commit('reverseTaskList', data);
-      commit('saveInLocalStorage', data);
-      commit('setTaskList');
+      setTimeout(() => {
+        commit('reverseTaskList', data);
+        commit('saveInLocalStorage', data);
+        commit('setTaskList');
+        commit('isLoading', false);
+      }, 1000);
     },
 
     addTaskInLocalStorage({ commit, state }, payload) {
@@ -85,5 +98,12 @@ export default new Vuex.Store({
       commit('deleteTaskFromTaskList', payload);
       commit('saveInLocalStorage', state.taskList);
     },
+
+    loadingPage({ commit }) {
+      commit('isLoading', true);
+      setTimeout(() => {
+        commit('isLoading', false);
+      }, 500);
+    }
   }
 });
