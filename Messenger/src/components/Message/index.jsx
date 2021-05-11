@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import './styles.scss';
 
-const Message = (props) => {
+const Message = ({ sender, removeMessage, text }) => {
     return (
-        <div className="textField textField--margin" style={{alignSelf: props.sender === 'Влад' ? 'flex-end' : 'flex-start'}}>
-            <p className="textField__nameTitle">{props.sender}</p>
-            <input className="textField__deleteBtn textField__deleteBtn--margin" type="button" value="x" onClick={props.removeMessage}/>
-            <p className="textField__msgText">{props.text}</p>
+        <div className="textField textField--margin" style={{alignSelf: sender === 'Влад' ? 'flex-end' : 'flex-start'}}>
+            <p className="textField__nameTitle">{sender}</p>
+            <input className="textField__deleteBtn textField__deleteBtn--margin" type="button" value="x" onClick={removeMessage}/>
+            <p className="textField__msgText">{text}</p>
         </div>
     );
 };

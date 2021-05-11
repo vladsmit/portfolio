@@ -7,7 +7,7 @@ import Message from '@components/Message';
 import MessageSender from '@components/MessageSender';
 import { addMessage, removeMessage } from '@actions/messageActions';
 
-const MessageField = (props) => {
+const MessageField = ({ messages, chats, chatId, addMessage, removeMessage }) => {
     const [value, setValue] = useState(() => {
         return '';
     });
@@ -25,16 +25,16 @@ const MessageField = (props) => {
     const handleClick = useCallback(e => {
         e.preventDefault();
         handleSendMessage(value, 'Влад');
-    }, [props.messages, props.chats, value]);
+    }, [messages, chats, value, handleSendMessage]);
 
     const handleSendMessage = useCallback((message, sender) => {
-        props.addMessage(message, sender, props.chatId, false);
+        addMessage(message, sender, chatId, false);
         if (sender === 'Влад') {
             setValue(() => {
                 return '';
             });
         };
-    }, [props.messages, props.chats, value]);
+    }, [messages, chats, value, addMessage]);
 
     const handleChangeValue = useCallback(e => {
         setValue(() => {
@@ -43,12 +43,12 @@ const MessageField = (props) => {
     }, [value]);
 
     const handleRemoveMessage = useCallback((messageId) => {
-        props.removeMessage(props.chatId, messageId);
-    }, [props.chats, props.chatId]);
+        removeMessage(chatId, messageId);
+    }, [chats, chatId, removeMessage]);
 
 
 
-    let messageElement = props.chats[props.chatId].messageList.map((messageId, i) => <Message key={i} text={props.messages[messageId].text} sender={props.messages[messageId].sender} removeMessage={() => handleRemoveMessage(messageId)} />);
+    let messageElement = chats[chatId].messageList.map((messageId, i) => <Message key={i} text={messages[messageId].text} sender={messages[messageId].sender} removeMessage={() => handleRemoveMessage(messageId)} />);
 
     return (
         <main className="msgField--wrapper">

@@ -4,17 +4,17 @@ import PropTypes from 'prop-types';
 import connect from 'react-redux/es/connect/connect';
 import { bindActionCreators } from 'redux';
 
-const Header = (props) => {
+const Header = ({ profile, chats, chatId, push }) => {
     const handleNavigate = useCallback(link => {
-        props.push(link);
-    }, []);
+        push(link);
+    }, [push]);
 
     return (
         <header className="mainHeader">
             <a className="mainHeader__profileLink" onClick={() => handleNavigate('/profile')}>
-                <img src="/src/assets/profile.png" alt="profileLogo" width="40"/>{props.profile.name}
+                <img src="/src/assets/profile.png" alt="profileLogo" width="40"/>{profile.name}
             </a>
-            <span className="mainHeader__chatName mainHeader__chatName--margin">{props.chats[props.chatId].title}</span>
+            <span className="mainHeader__chatName mainHeader__chatName--margin">{chats[chatId].title}</span>
         </header>
     );
 };

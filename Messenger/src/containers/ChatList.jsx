@@ -7,12 +7,12 @@ import { bindActionCreators } from 'redux';
 import { addChat, removeChat } from '@actions/chatActions';
 import ChatCreator from '@components/ChatCreator';
 
-const ChatList = (props) => {
+const ChatList = ({ chats, chatId, addChat, removeChat, push }) => {
     const [title, setTitle] = useState(() => {
         return '';
     });
 
-    const chatElements = Object.entries(props.chats).map(([key, value], i) => (<li key={i} className={props.chats[key].blink ? "chatBlock__list__item chatBlock__list__item--animation" : "chatBlock__list__item"} onClick={() => handleNavigate(`/chat/${key}`)}>{value.title}</li>));
+    const chatElements = Object.entries(chats).map(([key, value], i) => (<li key={i} className={chats[key].blink ? "chatBlock__list__item chatBlock__list__item--animation" : "chatBlock__list__item"} onClick={() => handleNavigate(`/chat/${key}`)}>{value.title}</li>));
 
     const handleChatTitle = useCallback(e => {
         setTitle(() => {
@@ -26,19 +26,19 @@ const ChatList = (props) => {
         setTitle(() => {
             return '';
         });
-    }, [title, props.chats]);
+    }, [title, chats, handleAddChat]);
 
     const handleAddChat = useCallback((title) => {
-        props.addChat(title);
-    }, [props.chats, title]);
+        addChat(title);
+    }, [chats, title, addChat]);
 
     const handleRemoveChat = useCallback(() => {
-        props.removeChat(props.chatId);
-    }, [props.chats, props.chatId]);
+        removeChat(chatId);
+    }, [chats, chatId, removeChat]);
 
     const handleNavigate = useCallback(link => {
-        props.push(link);
-    }, []);
+        push(link);
+    }, [push]);
 
     return (
         <section className="chatBlock">

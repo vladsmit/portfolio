@@ -4,10 +4,10 @@ import { push } from 'connected-react-router';
 import connect from 'react-redux/es/connect/connect';
 import { bindActionCreators } from 'redux';
 
-const Error = (props) => {
+const Error = ({ push }) => {
     const handleNavigate = useCallback((link) => {
-        props.push(link);
-    }, []);
+        push(link);
+    }, [push]);
 
     return (
         <div className="error--wrapper">

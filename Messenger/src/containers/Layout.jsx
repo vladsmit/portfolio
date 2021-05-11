@@ -7,16 +7,16 @@ import MessageField from '@containers/MessageField';
 import Header from '@containers/Header';
 import ChatList from '@containers/ChatList';
 
-const Layout = (props) => {
-    if (props.chats[props.chatId] === undefined) {
+const Layout = ({ chats, chatId }) => {
+    if (chats[chatId] === undefined) {
         return <Redirect to="/chat/1" />
     }
 
     return (
         <div className="mainWrapper">
-            <Header chatId={props.chatId} />
-            <ChatList chatId={props.chatId}/>
-            <MessageField chatId={props.chatId} />
+            <Header chatId={chatId} />
+            <ChatList chatId={chatId}/>
+            <MessageField chatId={chatId} />
         </div>
     );
 };
