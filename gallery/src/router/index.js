@@ -1,20 +1,28 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'home',
+    component: () => import('../views/Home.vue')
+  },
+  {
+    path: '/category_:category/photo_:id',
+    name: 'photoInfo',
+    component: () => import('../views/PhotoInfo.vue')
   },
   {
     path: '/about',
-    name: 'About',
+    name: 'about',
     component: () => import('../views/About.vue')
-  }
+  },
+  {
+    path: '*',
+    redirect: '/'
+  },
 ]
 
 const router = new VueRouter({
