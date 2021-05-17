@@ -1,39 +1,76 @@
 <template>
-    <div class="infoPage--wrapper">
+    <v-container>
         <template v-if="getCategories && !getLoadingStatus">
-            <img :src="getActualPhoto.url" alt="photo" />
-            <p>
-                Заголовок картинки:
-                {{ getActualPhoto.title }}
-            </p>
-            <p>
-                Номер картинки:
-                {{ getActualPhoto.id }}
-            </p>
-            <p>
-                Ссылка на картинку:
-                {{ getActualPhoto.url }}
-            </p>
-            <button
-                class="infoPage__button"
-                @click="$router.push({ name: 'home' })"
-            >
-                Вернуться в галлерею
-            </button>
+            <v-card class="pt-6 mb-6 mx-auto" max-width="500">
+                <v-img
+                    max-width="350"
+                    max-height="350"
+                    :src="getActualPhoto.url"
+                    class="ma-auto"
+                />
+                <v-list>
+                    <v-list-item-group>
+                        <v-list-item>
+                            <v-list-item-icon class="mr-3"
+                                ><v-icon color="blue"
+                                    >mdi-tag</v-icon
+                                ></v-list-item-icon
+                            >
+                            <v-list-item-content>
+                                <v-list-item-title
+                                    >Заголовок картинки:
+                                    {{
+                                        getActualPhoto.title
+                                    }}</v-list-item-title
+                                >
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item>
+                            <v-list-item-icon class="mr-3"
+                                ><v-icon color="blue"
+                                    >mdi-tag</v-icon
+                                ></v-list-item-icon
+                            >
+                            <v-list-item-content>
+                                <v-list-item-title
+                                    >Номер картинки:
+                                    {{ getActualPhoto.id }}</v-list-item-title
+                                >
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item>
+                            <v-list-item-icon class="mr-3"
+                                ><v-icon color="blue"
+                                    >mdi-tag</v-icon
+                                ></v-list-item-icon
+                            >
+                            <v-list-item-content>
+                                <v-list-item-title
+                                    >Ссылка на картинку:
+                                    {{ getActualPhoto.url }}</v-list-item-title
+                                >
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list-item-group>
+                </v-list>
+            </v-card>
+            <come-back-button />
         </template>
         <spinner v-else />
-    </div>
+    </v-container>
 </template>
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
 import Spinner from "../components/Spinner";
+import ComeBackButton from "../components/ComeBackButton";
 
 export default {
     name: "PhotoInfo",
 
     components: {
         Spinner,
+        ComeBackButton,
     },
 
     computed: {
@@ -55,21 +92,6 @@ export default {
         setTimeout(() => {
             this.isLoading(false);
         }, 500);
-
-        if (
-            this.$route.params.category > this.getCategories.length ||
-            /\D/.test(this.$route.params.category)
-        ) {
-            this.$router.push({ name: 'home' });
-        }
     },
 };
 </script>
-
-<style lang="scss" scoped>
-.infoPage__button {
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 10px;
-}
-</style>

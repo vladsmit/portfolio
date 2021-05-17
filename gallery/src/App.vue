@@ -1,13 +1,16 @@
 <template>
-    <div id="app">
-        <router-view></router-view>
-    </div>
+    <layout />
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import Layout from "./views/Layout";
 export default {
     name: "App",
+
+    components: {
+        Layout,
+    },
 
     methods: {
         ...mapActions(["getPhotosFromApi"]),
@@ -16,19 +19,5 @@ export default {
     created() {
         this.getPhotosFromApi();
     },
-
-    
 };
 </script>
-<style lang="scss" scoped>
-body {
-    margin: 0;
-}
-
-#app {
-    width: 100%;
-    max-width: 1200px;
-    margin: auto;
-    border: 1px solid black;
-}
-</style>

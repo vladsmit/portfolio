@@ -21,7 +21,8 @@ const routes = [
   },
   {
     path: '*',
-    redirect: '/'
+    name: 'notFound',
+    component: () => import('../views/ErrorPage.vue')
   },
 ]
 

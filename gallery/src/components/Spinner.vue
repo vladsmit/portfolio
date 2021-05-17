@@ -1,11 +1,11 @@
 <template>
     <v-app id="inspire">
-        <div class="spinner--align">
+        <v-layout justify-center="true">
             <v-progress-circular
                 indeterminate
                 color="primary"
             ></v-progress-circular>
-        </div>
+        </v-layout>
     </v-app>
 </template>
 <script>
@@ -14,10 +14,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.spinner--align {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.v-progress-circular {
+    margin: 10rem;
 }
 </style>

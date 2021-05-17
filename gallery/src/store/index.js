@@ -26,6 +26,10 @@ export default new Vuex.Store({
     },
 
     savePhotosInState(state, payload) {
+      /**
+       * возможно, я тут немного захардкодил с наполнением массива категорий :)
+       */
+
       let photos = [];
       let num = 0;
       for (let i = 0; i < 4; i++) {
@@ -47,8 +51,8 @@ export default new Vuex.Store({
     async getPhotosFromApi({ commit }) {
       commit('isLoading', true);
       const { data } = await Axios.get("https://jsonplaceholder.typicode.com/photos");
+      commit('savePhotosInState', data);
       setTimeout(() => {
-        commit('savePhotosInState', data);
         commit('isLoading', false);
       }, 500);
     }
