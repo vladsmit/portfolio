@@ -12,7 +12,7 @@ const routes = [
   {
     path: '/category_:category/photo_:id',
     name: 'photoInfo',
-    component: () => import('../views/PhotoInfo.vue')
+    component: () => import('../views/PhotoInfo.vue'),
   },
   {
     path: '/about',
