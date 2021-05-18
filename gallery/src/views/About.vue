@@ -148,10 +148,10 @@
             >
 
             <v-card-actions
-                ><a href="https://github.com/vladsmit/portfolio" class="ml-4"
+                ><a href="https://github.com/vladsmit/portfolio" target=”_blank” class="ml-4"
                     ><v-img src="../assets/github_icon.svg" max-width="40"
                 /></a>
-                <a href="https://www.instagram.com/vladsmit" class="ml-4"
+                <a href="https://www.instagram.com/vladsmit" target=”_blank” class="ml-4"
                     ><v-img src="../assets/instagram_icon.svg" max-width="40"
                 /></a>
             </v-card-actions>

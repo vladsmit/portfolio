@@ -3,17 +3,13 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 import Layout from "./views/Layout";
 export default {
     name: "App",
 
     components: {
         Layout,
-    },
-
-    computed: {
-        ...mapGetters(["getCategories"]),
     },
 
     methods: {
