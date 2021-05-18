@@ -2,16 +2,28 @@ body {
     margin: 0;
 }
 
-#components-layout-demo-responsive.logo {
-    height: 32px;
-    margin: 16px;
-    background: rgba(255, 255, 255, 0.2);
-  }
+.sider__form {
+    &--wrapper {
+        padding: 20px 20px 0;
+    }
+    &__input {
+        &--wrapper {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.sider__header {
+    height: 74px;
+    background-color: rgb(240, 241, 243);
+}
   
-  .site-page-header {
+.site-page-header {
     border: 1px solid rgb(235, 237, 240);
-  }
+}
   
-  .site-layout-background {
+.site-layout-background {
+    min-height: 577px;
     background: #fff;
-  }
+    padding: 24px;
+}
