@@ -91,7 +91,7 @@ export default {
         if (
             this.$route.params.category > 4 ||
             this.$route.params.id > this.$route.params.category * 6 ||
-            this.$route.params.id < (this.$route.params.category - 1) * 6 ||
+            this.$route.params.id <= (this.$route.params.category - 1) * 6 ||
             /\D/.test(this.$route.params.category) ||
             /\D/.test(this.$route.params.id)
         ) {
