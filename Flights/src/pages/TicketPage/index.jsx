@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import {
     PageHeader,
@@ -9,6 +9,8 @@ import {
     Button,
     Checkbox,
     Row,
+    BackTop,
+    Empty
 } from 'antd';
 import './TicketPage.scss';
 
@@ -18,14 +20,35 @@ import Spinner from '../../components/Spinner';
 const { Content, Sider } = Layout;
 
 const TicketPage = ({ filteredFlights, loading, error, filteredAirlines, sortType, sortTypeStatus, filterTypeStatus, priceFromStatus, priceToStatus, airlinesStatus, getFlights }) => {
+    const [showMore, setShowMore] = useState(() => {
+        return false;
+    });
+
+    useEffect(() => {
+        setShowMore(() => {
+            return false;
+        });
+    }, [filteredFlights]);
+
+    const handleShowMore = useCallback(() => {
+        setShowMore(() => {
+            return true;
+        })
+    }, []);
 
     let flightsList = filteredFlights.map((item, index) => <FlightCard key={index} flight={item} />);
 
-    let checkboxes = filteredFlights.map((item, index) => (
+    let checkboxes = filteredAirlines.map((item, index) => (
         <Row key={index}>
-            <Checkbox name="airlines" value={item.flight.carrier.caption}>- {item.flight.carrier.caption} от {item.flight.price.total.amount} </Checkbox>
+            <Checkbox name="airlines" value={item.flight.carrier.caption}>
+                <div className="sider__form__airlineName--wrapper">
+                    - <span className="sider__form__airlineName">{item.flight.carrier.caption}</span> от {item.flight.price.total.amount} р.
+                </div>
+            </Checkbox>
         </Row>
     ));
+
+    let numberOfItems = showMore ? flightsList.length : 2;
 
     return (
         <Layout className="container">
@@ -96,8 +119,11 @@ const TicketPage = ({ filteredFlights, loading, error, filteredAirlines, sortTyp
                 <Content className="main__content--wrapper">
                     <div className="main__content">
                         {error ? error :
-                            <>{loading ? <Spinner /> : flightsList}</>}
+                            <>{loading ? <Spinner /> : !flightsList.length ? <Empty description={false} /> : flightsList.slice(0, numberOfItems)}</>}
+                        {flightsList.length > 2 && !showMore ? <Button onClick={handleShowMore}>Показать еще</Button> : ""}
+                        <BackTop />
                     </div>
+
                 </Content>
             </Layout>
         </Layout >

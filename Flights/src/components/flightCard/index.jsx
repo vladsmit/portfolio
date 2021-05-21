@@ -28,9 +28,9 @@ const FlightCard = ({ flight }) => {
             <div className="flightCard__info--wrapper">
                 <div className="flightCard__airportInfo">
                     {flight.flight.legs[0].segments.length > 1 ?
-                        <p>{flight.flight.legs[0].segments[0].departureCity.caption}, {flight.flight.legs[0].segments[0].departureAirport.caption} <span>({flight.flight.legs[0].segments[0].departureAirport.uid})</span> -&gt; {flight.flight.legs[0].segments[1]?.arrivalCity?.caption}, {flight.flight.legs[0].segments[1]?.arrivalAirport?.caption} <span>({flight.flight.legs[0].segments[1]?.arrivalAirport?.uid})</span></p>
+                        <p>{flight.flight.legs[0].segments[0].departureCity.caption}{flight.flight.legs[0].segments[1]?.arrivalCity?.caption ? "," : ""} {flight.flight.legs[0].segments[0].departureAirport.caption} <span>({flight.flight.legs[0].segments[0].departureAirport.uid})</span> -&gt; {flight.flight.legs[0].segments[1]?.arrivalCity?.caption}{flight.flight.legs[0].segments[1]?.arrivalCity?.caption ? "," : ""} {flight.flight.legs[0].segments[1]?.arrivalAirport?.caption} <span>({flight.flight.legs[0].segments[1]?.arrivalAirport?.uid})</span></p>
                         :
-                        <p>{flight.flight.legs[0].segments[0].departureCity.caption}, {flight.flight.legs[0].segments[0].departureAirport.caption} <span>({flight.flight.legs[0].segments[0].departureAirport.uid})</span> -&gt; {flight.flight.legs[0].segments[0].arrivalCity.caption}, {flight.flight.legs[0].segments[0].arrivalAirport.caption} <span>({flight.flight.legs[0].segments[0].arrivalAirport.uid})</span></p>
+                        <p>{flight.flight.legs[0].segments[0].departureCity.caption}{flight.flight.legs[0].segments[1]?.arrivalCity?.caption ? "," : ""} {flight.flight.legs[0].segments[0].departureAirport.caption} <span>({flight.flight.legs[0].segments[0].departureAirport.uid})</span> -&gt; {flight.flight.legs[0].segments[0].arrivalCity.caption}{flight.flight.legs[0].segments[1]?.arrivalCity?.caption ? "," : ""} {flight.flight.legs[0].segments[0].arrivalAirport.caption} <span>({flight.flight.legs[0].segments[0].arrivalAirport.uid})</span></p>
                     }
                 </div>
                 <div className="flightCard__timeInfo">
@@ -44,14 +44,17 @@ const FlightCard = ({ flight }) => {
             </div>
             <div className="flightCard__transferInfo">{flight.flight.legs[0].segments.length > 1 ? "1 пересадка" : ""}</div>
             <div className="flightCard__companyInfo">
-                <p>Рейс выполняет: {flight.flight.legs[0].segments[0].airline.caption}</p>
+            {flight.flight.legs[0].segments.length < 2 ?
+            <p>Рейс выполняет: {flight.flight.legs[0].segments[0].airline.caption}</p>
+            :
+            <p>Рейс выполняет: {flight.flight.legs[0].segments[1].airline.caption}</p>}
             </div>
             <div className="flightCard__info--wrapper">
                 <div className="flightCard__airportInfo">
                     {flight.flight.legs[1].segments.length > 1 ?
-                        <p>{flight.flight.legs[1].segments[0]?.departureCity?.caption}, {flight.flight.legs[1].segments[0]?.departureAirport?.caption} <span>({flight.flight.legs[1].segments[0]?.departureAirport?.uid})</span> -&gt; {flight.flight.legs[1].segments[1]?.arrivalCity?.caption}, {flight.flight.legs[1].segments[1]?.arrivalAirport?.caption} <span>({flight.flight.legs[1].segments[1]?.arrivalAirport?.uid})</span></p>
+                        <p>{flight.flight.legs[1].segments[0]?.departureCity?.caption}{flight.flight.legs[0].segments[1]?.arrivalCity?.caption ? "," : ""} {flight.flight.legs[1].segments[0]?.departureAirport?.caption} <span>({flight.flight.legs[1].segments[0]?.departureAirport?.uid})</span> -&gt; {flight.flight.legs[1].segments[1]?.arrivalCity?.caption}{flight.flight.legs[0].segments[1]?.arrivalCity?.caption ? "," : ""} {flight.flight.legs[1].segments[1]?.arrivalAirport?.caption} <span>({flight.flight.legs[1].segments[1]?.arrivalAirport?.uid})</span></p>
                         :
-                        <p>{flight.flight.legs[1].segments[0]?.departureCity?.caption}, {flight.flight.legs[1].segments[0]?.departureAirport?.caption} <span>({flight.flight.legs[1].segments[0]?.departureAirport?.uid})</span> -&gt; {flight.flight.legs[1].segments[0]?.arrivalCity?.caption}, {flight.flight.legs[1].segments[0]?.arrivalAirport?.caption} <span>({flight.flight.legs[1].segments[0]?.arrivalAirport?.uid})</span></p>
+                        <p>{flight.flight.legs[1].segments[0]?.departureCity?.caption}{flight.flight.legs[0].segments[1]?.arrivalCity?.caption ? "," : ""} {flight.flight.legs[1].segments[0]?.departureAirport?.caption} <span>({flight.flight.legs[1].segments[0]?.departureAirport?.uid})</span> -&gt; {flight.flight.legs[1].segments[0]?.arrivalCity?.caption}{flight.flight.legs[0].segments[1]?.arrivalCity?.caption ? "," : ""} {flight.flight.legs[1].segments[0]?.arrivalAirport?.caption} <span>({flight.flight.legs[1].segments[0]?.arrivalAirport?.uid})</span></p>
                         }
                 </div>
                 <div className="flightCard__timeInfo">
@@ -65,7 +68,10 @@ const FlightCard = ({ flight }) => {
             </div>
             <div className="flightCard__transferInfo">{flight.flight.legs[1].segments.length > 1 ? "1 пересадка" : ""}</div>
             <div className="flightCard__companyInfo">
-                <p>Рейс выполняет: {flight.flight.legs[1].segments[0].airline.caption}</p>
+            {flight.flight.legs[1].segments.length < 2 ?
+            <p>Рейс выполняет: {flight.flight.legs[1].segments[0].airline.caption}</p>
+            :
+            <p>Рейс выполняет: {flight.flight.legs[1].segments[1].airline.caption}</p>}
             </div>
             <button className="flightCard__button">Выбрать</button>
         </div >
