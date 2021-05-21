@@ -1,112 +1,105 @@
-import React, { useState } from 'react';
-import {
-  PageHeader,
-  Layout,
-  Form,
-  Input,
-  Radio,
-  Button,
-  Checkbox,
-  Row,
-} from 'antd';
+import React, { useState, useCallback, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import connect from 'react-redux/es/connect/connect';
+import { bindActionCreators } from 'redux';
+import { fetchFlights } from './store/actions/getFlightsFromJson';
+import { getFilteredFlights } from './store/actions/getFilteredFlights';
+import { spinnerSwitch, addFilters } from './store/actions/flightActions';
 import './styles/styles.scss';
-import FlightCard from './components/FlightCard';
 
-const { Content, Footer, Sider } = Layout;
+import TicketPage from './pages/TicketPage';
 
-const App = (props) => {
-  const [needState, setNeedState] = useState(() => {
-    return "needState";
+const App = ({ fetchFlights, getFilteredFlights, addFilters, filteredFlights, error, loading, filteredAirlines, spinnerSwitch }) => {
+  const [sortType, setSortType] = useState(() => {
+    return 'rise';
   });
 
-  const [transfer, setTransfer] = useState(() => {
-    return true;
-});
+  const [filterType, setFilterType] = useState(() => {
+    return [];
+  });
 
-  return (
-    <Layout>
-      <Sider width="300"
-        breakpoint="lg"
-        collapsedWidth="0"
-        theme="light"
-      >
-        <div className="sider__header" />
-        <Form
-          className="sider__form--wrapper"
-          name="validate_other"
-        >
-          <h3>Сортировать</h3>
-          <Form.Item wrapperCol={{ span: 24, offset: 0 }}>
-            <Radio.Group defaultValue={"rise"}>
-              <Radio value={"rise"}>- по возрастанию цены</Radio>
-              <Radio value={"fall"}>- по убыванию цены</Radio>
-              <Radio value={"time"}>- по времени в пути</Radio>
-            </Radio.Group>
-          </Form.Item>
+  const [priceFrom, setPriceFrom] = useState(() => {
+    return null;
+  });
 
-          <h3>Фильтровать</h3>
-          <Form.Item wrapperCol={{ span: 24, offset: 0 }}>
-            <Checkbox.Group>
-              <Row>
-                <Checkbox value="withTransfer">
-                  - 1 пересадка
-                </Checkbox>
-              </Row>
-              <Row>
-                <Checkbox value="withoutTransfer">
-                  - без пересадок
-              </Checkbox>
-              </Row>
-            </Checkbox.Group>
-          </Form.Item>
+  const [priceTo, setPriceTo] = useState(() => {
+    return null;
+  });
 
-          <h3>Цена</h3>
-          <Form.Item className="sider__form__input--wrapper" label="От" wrapperCol={{ span: 18, offset: 0 }}>
-            <Input className="sider__form__input" placeholder="Минимальная стоимость..." />
-          </Form.Item>
-          <Form.Item label="До" wrapperCol={{ span: 18, offset: 0 }}>
-            <Input className="sider__form__input" placeholder="Максимальная стоимость..." />
-          </Form.Item>
+  const [airlines, setAirlines] = useState(() => {
+    return [];
+  });
 
-          <h3>Авиакомпании</h3>
-          <Form.Item wrapperCol={{ span: 24, offset: 0 }}>
-            <Checkbox.Group>
-              <Row>
-                <Checkbox value="1">
-                  - авиакомпания {needState} от {needState}
-                </Checkbox>
-              </Row>
-              <Row>
-                <Checkbox value="2">
-                  - авиакомпания {needState} от {needState}
-                </Checkbox>
-              </Row>
-            </Checkbox.Group>
-          </Form.Item>
+  useEffect(() => {
+    fetchFlights();
+  }, [fetchFlights]);
 
-          <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
-            <Button type="primary" htmlType="submit">
-              Искать
-        </Button>
-          </Form.Item>
-        </Form>
-        <div className="sider__header"></div>
-      </Sider>
-      <Layout>
-        <PageHeader
-          className="site-page-header"
-          title="Flight Finder"
-          subTitle="Быстрый поиск авиабилетов"
-        />
-        <Content style={{ margin: '0 16px' }}>
-          <div className="site-layout-background">
-            <FlightCard needState={needState} transfer={transfer} />
-          </div>
-        </Content>
-        <Footer style={{ textAlign: 'center' }}>Flight Finder &copy; 2021</Footer>
-      </Layout>
-    </Layout >
-  )
+  const handleGetFlights = useCallback(() => {
+    spinnerSwitch(true);
+    addFilters({
+      sort: sortType,
+      filter: filterType,
+      priceFrom: priceFrom,
+      priceTo: priceTo,
+      airlines: airlines
+    });
+    getFilteredFlights();
+    setTimeout(() => {
+      spinnerSwitch(false);
+    }, 1000);
+  }, [spinnerSwitch, addFilters, getFilteredFlights, sortType, filterType, priceFrom, priceTo, airlines]);
+
+  const handleSortTypeStatus = useCallback(e => {
+    setSortType(() => {
+      return e.target.value;
+    });
+  }, []);
+
+  const handleFilterTypeStatus = useCallback(checkedValues => {
+    setFilterType(() => {
+      return checkedValues;
+    });
+  }, []);
+
+  const handlePriceFromStatus = useCallback(e => {
+    setPriceFrom(() => {
+      return +e.target.value;
+    });
+  }, []);
+
+  const handlePriceToStatus = useCallback(e => {
+    setPriceTo(() => {
+      return +e.target.value;
+    });
+  }, []);
+
+  const handleAirlinesStatus = useCallback(checkedValues => {
+    setAirlines(() => {
+      return checkedValues;
+    });
+  }, []);
+
+  return <TicketPage filteredFlights={filteredFlights} sortType={sortType} loading={loading} error={error} sortTypeStatus={handleSortTypeStatus} filterTypeStatus={handleFilterTypeStatus} priceFromStatus={handlePriceFromStatus} priceToStatus={handlePriceToStatus} airlinesStatus={handleAirlinesStatus} getFlights={handleGetFlights} filteredAirlines={filteredAirlines} />
 }
 
-export default App;
+App.propTypes = {
+  fetchFlights: PropTypes.func,
+  spinnerSwitch: PropTypes.func,
+  getFilteredFlights: PropTypes.func,
+  addFilters: PropTypes.func,
+  error: PropTypes.string,
+  loading: PropTypes.bool,
+  filteredFlights: PropTypes.array,
+  filteredAirlines: PropTypes.array,
+}
+
+const mapStateToProps = ({ flightReducer }) => ({
+  error: flightReducer.error,
+  loading: flightReducer.loading,
+  filteredAirlines: flightReducer.filteredAirlines,
+  filteredFlights: flightReducer.filteredFlights,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({ fetchFlights, spinnerSwitch, getFilteredFlights, addFilters }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

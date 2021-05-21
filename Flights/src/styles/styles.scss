@@ -1,29 +1,4 @@
 body {
+    font-size: calc(0.1rem + 0.85vw);
     margin: 0;
-}
-
-.sider__form {
-    &--wrapper {
-        padding: 20px 20px 0;
-    }
-    &__input {
-        &--wrapper {
-            margin-bottom: 10px;
-        }
-    }
-}
-
-.sider__header {
-    height: 74px;
-    background-color: rgb(240, 241, 243);
-}
-  
-.site-page-header {
-    border: 1px solid rgb(235, 237, 240);
-}
-  
-.site-layout-background {
-    min-height: 577px;
-    background: #fff;
-    padding: 24px;
 }
