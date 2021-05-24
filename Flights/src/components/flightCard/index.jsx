@@ -4,13 +4,41 @@ import { ClockCircleOutlined } from '@ant-design/icons';
 import './FlightCard.scss';
 
 const FlightCard = ({ flight }) => {
-   
-    let date = new Date(flight.flight.legs[0].segments[0].departureDate);
-    let date2 = new Date(flight.flight.legs[0].segments.length > 1 ? flight.flight.legs[0].segments[1].arrivalDate : flight.flight.legs[0].segments[0].arrivalDate);
-    let date3 = new Date(flight.flight.legs[1].segments[0].departureDate);
-    let date4 = new Date(flight.flight.legs[1].segments.length > 1 ? flight.flight.legs[1].segments[1].arrivalDate : flight.flight.legs[1].segments[0].arrivalDate);
 
-    const handleTimeConvert = useCallback(duration => {
+    const handleGetTime = useCallback(dateInfo => {
+        let date = new Date(dateInfo);
+        let hours = date.getHours();
+        if (hours < 10) {
+            hours = "0" + hours;
+        }
+        let minutes = date.getMinutes();
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+        return `${hours}:${minutes}`;
+    }, []);
+
+    const handleGetDate = useCallback(dateInfo => {
+        let weekDays = ["вс", "пн", "вт", "ср", "чт", "пт", "сб"];
+        let months = ["янв", "фев", "мар", "апр", "май", "июн", "июл", "авг", "сен", "окт", "ноя", "дек"];
+        let date = new Date(dateInfo);
+        let day = date.getDate();
+        let weekDay = date.getDay();
+        for (let i = 0; i < weekDays.length; i++) {
+            if (weekDay === i) {
+                weekDay = weekDays[i];
+            }
+        }
+        let month = date.getMonth();
+        for (let i = 0; i < months.length; i++) {
+            if (month === i) {
+                month = months[i];
+            }
+        }
+        return `${day} ${month}. ${weekDay}`;
+    }, []);
+
+    const handleTimeDurationConvert = useCallback(duration => {
         let hours = Math.floor(duration / 60);
         let minutes = duration - (hours * 60);
         return `${hours} ч ${minutes} мин`;
@@ -34,12 +62,12 @@ const FlightCard = ({ flight }) => {
                     }
                 </div>
                 <div className="flightCard__timeInfo">
-                    <p>{`${date.getHours()}:${date.getMinutes()}`} <span>18 авг. вт</span></p>
+                    <p>{handleGetTime(flight.flight.legs[0].segments[0].departureDate)} <span>{handleGetDate(flight.flight.legs[0].segments[0].departureDate)}</span></p>
                     <p>
                         <ClockCircleOutlined style={{ color: 'black', margin: '2px' }} />
-                        {handleTimeConvert(flight.flight.legs[0].duration)}
+                        {handleTimeDurationConvert(flight.flight.legs[0].duration)}
                     </p>
-                    <p><span>19 авг. ср </span>{`${date2.getHours()}:${date2.getMinutes()}`}</p>
+                    <p><span>{handleGetDate(flight.flight.legs[0].segments.length > 1 ? flight.flight.legs[0].segments[1].arrivalDate : flight.flight.legs[0].segments[0].arrivalDate)} </span>{handleGetTime(flight.flight.legs[0].segments.length > 1 ? flight.flight.legs[0].segments[1].arrivalDate : flight.flight.legs[0].segments[0].arrivalDate)}</p>
                 </div>
             </div>
             <div className="flightCard__transferInfo">{flight.flight.legs[0].segments.length > 1 ? "1 пересадка" : ""}</div>
@@ -58,12 +86,12 @@ const FlightCard = ({ flight }) => {
                         }
                 </div>
                 <div className="flightCard__timeInfo">
-                    <p className="flightCard__timeInfo__departure">{`${date3.getHours()}:${date3.getMinutes()}`} <span>19 авг. ср</span></p>
+                    <p className="flightCard__timeInfo__departure">{handleGetTime(flight.flight.legs[1].segments[0].departureDate)} <span>{handleGetDate(flight.flight.legs[1].segments[0].departureDate)}</span></p>
                     <p>
                         <ClockCircleOutlined style={{ color: 'black', margin: '2px' }} />
-                        {handleTimeConvert(flight.flight.legs[1].duration)}
+                        {handleTimeDurationConvert(flight.flight.legs[1].duration)}
                     </p>
-                    <p className="flightCard__timeInfo__arrival"><span>20 авг. чт </span>{`${date4.getHours()}:${date4.getMinutes()}`}</p>
+                    <p className="flightCard__timeInfo__arrival"><span>{handleGetDate(flight.flight.legs[1].segments.length > 1 ? flight.flight.legs[1].segments[1].arrivalDate : flight.flight.legs[1].segments[0].arrivalDate)} </span>{handleGetTime(flight.flight.legs[1].segments.length > 1 ? flight.flight.legs[1].segments[1].arrivalDate : flight.flight.legs[1].segments[0].arrivalDate)}</p>
                 </div>
             </div>
             <div className="flightCard__transferInfo">{flight.flight.legs[1].segments.length > 1 ? "1 пересадка" : ""}</div>
