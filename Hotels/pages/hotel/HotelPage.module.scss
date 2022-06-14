@@ -1,0 +1,29 @@
+.hotelInfoBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 50px;
+}
+
+.hotelInfo {
+  width: 50%;
+}
+
+.addressTitle,
+.aboutHotelTitle {
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+
+.addressTitle {
+  margin-top: 0;
+}
+
+.desc {
+  margin-top: 2px;
+  text-align: justify;
+}
+
+.img {
+  box-shadow: 0 0 9px rgba(0, 0, 0, 0.7);
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "0",
+    "title": "Voyage Sorgun",
+    "address": "Manavgat Sorgun Yöresi",
+    "image": "https://lh3.googleusercontent.com/proxy/6B3cg3brLxzkds4iFNeNrRyevGjX_CSVPr5U8J_oKFcOXck164ADyeBFN_2AUuka4RNTjbdcpa1Wlhttm3ILYFK2E_FbFNvlrJuGLnEZmc1oHVz2182Lz4RJmk9k1avutGKPj2oaX5NSijWdvWZvWBGS1iHMrg=w592-h404-n-k-rw-no-v1",
+    "desc": "Location: The hotel is located 3 km from the ancient city of Side, 65 km from Antalya Airport, in the Sorgun district, in a total area of 87,000 sq.m. Number of rooms: - 508 rooms Types pitaniya:​1 main restaurant, 6 a la carte restaurant, 2 snack restaurant, 9 bars, 1 pastry shop. -For breakfast, lunch and dinner, buffet is available in the main restaurant; - main restaurant for 980 seats; - the main restaurant has a children's buffet, a nook for preparing baby food, diet food; - in the main restaurant, orange freshly squeezed juice is served."
+  },
+  {
+    "id": "1",
+    "title": "Royal Holiday Palace",
+    "address": "Kemerağzi, Lara Turizm Yolu",
+    "image": "https://lh3.googleusercontent.com/p/AF1QipOSfkcr3kW7KFDplO0L_NZA7gZ3VKxYqVSe4it7=w592-h404-n-k-rw-no-v1",
+    "desc": "Royal Holiday Palace combines the history and comfort of modern architecture. The hotel is built on an area of ​ ​ 53.000m2 and is located on the golden sands of the famous Lara beach in Antalya. The hotel operates according to the Ultra All Inclusive system. The combination of various sports and entertainment will help guests to spend an unforgettable vacation. Location: Located 15 km from Antalya International Airport and 17 km from the city centre. Number of rooms: The hotel has 604 rooms Room description: Rooms covered with carpet."
+  },
+  {
+    "id": "2",
+    "title": "Selectum Luxury Resort",
+    "address": "Kadriye, Belek Mahallesi Taşliburun",
+    "image": "https://lh3.googleusercontent.com/proxy/IiAhqINaxv9tWwfc7mwteniQdDCFNPJIn-XDzgTWHUIzpxqeaSRWCVn-amDIpM1zjQ9LKKZUvyuRGVO8QJFAh_DMZARcI6_CeZ0xG6IJ1tOilWVesL88GaJo8-FQu2ODkIo4VvK0_92W_L9WEF9S_UksPF4PLA=w253-h168-k-no",
+    "desc": "The hotel was opened in 2017. The total area is 95,000 sq.m. It consists of one 9-story building and family rooms. For convenience, there are 4 elevators (panoramic). Location: The hotel is located 5 km from Kadriye, Belek and 35 km from Antalya. Antalya Airport is 27 km away. Nearby hotels: Sueno Hotels Golf Belek, Calista Luxury Resort. Number of rooms: Hotel has 300 rooms in the main building and 100 rooms Family rooms, overlooking the sea, golf courses or forest."
+  },
+  {
+    "id": "3",
+    "title": "Tui Blue Tropical",
+    "address": "Sarigerme, Akçagöl Sarisu Mevkii",
+    "image": "https://lh3.googleusercontent.com/p/AF1QipNzZXKb277peognHq7yPhlzeB7q5tBwPcu5pO6T=w592-h404-n-k-rw-no-v1",
+    "desc": "Do you dream of the hotel combining a huge pool with a lot of fun for the whole family fantastic scenery? If so, TUI Family Life Tropical Resort is for you! If you like peace and quiet, you can take a walk around the area with beautiful views. Your dreams will come true in this hotel. The whole family will enjoy the fantastic beach and huge rollercoaster pool. Children can have fun in mini-clubs, teenagers can play in the pool, mom can go to aerobics, and dad can take diving lessons, all this and not only at TUI Family Life Tropical Resort!"
+  },
+  {
+    "id": "ncw",
+    "title": "Barut Hemera",
+    "address": "Side, Süleyman Demirel Blv. No:1",
+    "image": "https://www.amigo-s.ru/images/e475bf8a7dd2dde8de73b27951808c53.jpg",
+    "desc": "A dizzying cocktail of sun, sea, entertainment framed by a unique and natural nature and warm hospitality. A feeling of happiness and peace will give you a light breeze of the Mediterranean Sea, and the special atmosphere of the Barut hotels will present you with the most multifaceted understanding of recreation, be it silence or fun, romance or sports entertainment...  Our little guests will also feel surrounded by attention, rejoicing in every day of their holidays. Service, quality of food and interesting events have become a tradition of recreation of Barut hotels, and every moment of arrival in them is associated with the concept of high-quality rest."
+  }
+]
