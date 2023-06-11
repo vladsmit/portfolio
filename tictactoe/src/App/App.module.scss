@@ -1,0 +1,21 @@
+.container,
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+.wrapper {
+  width: 450px;
+  flex-direction: column;
+}
+
+.gameFieldMargin {
+  margin-bottom: 15px;
+}

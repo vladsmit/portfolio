@@ -1,0 +1,32 @@
+.text,
+.playerName {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  color: #0060e6;
+}
+
+.gameCountBlock {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .playerInfoBlock {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .playerName {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+.buttonFontWeight {
+  font-weight: 600;
+}
