@@ -8,7 +8,7 @@ import {
   updateField,
   checkEndOfTheGame,
 } from '../../store/slices/ticTacToeSlice';
-import { Cell } from '../';
+import { Cell } from '..';
 import styles from './GameField.module.scss';
 
 interface IGameFieldProps {

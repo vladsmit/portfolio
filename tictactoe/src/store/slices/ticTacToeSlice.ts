@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { TCell, TTurn, IPlayerSet, ICoords } from '../../interfaces';
 import { checkWinner, checkFilledCells } from '../../utils';
-import { RootState, AppThunk } from '../';
+import { RootState, AppThunk } from '..';
 
 export interface ticTacToeState {
   isGameOver: boolean;
