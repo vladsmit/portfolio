@@ -11,7 +11,7 @@ interface ICellProps {
 export const Cell = (props: ICellProps) => {
   const { sign, onClick } = props;
   return (
-    <div className={sign ? styles.filledCell : styles.cell} onClick={onClick}>
+    <div className={sign ? styles.filledCell : styles.cell} onClick={onClick} data-testid="wrapper">
       {sign ? (
         <img
           src={sign === 'cross' ? cross : zero}

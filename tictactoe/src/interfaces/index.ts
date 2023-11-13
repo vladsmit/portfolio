@@ -7,8 +7,7 @@ export interface IPlayer {
   wins: number;
 }
 export interface IPlayerSet {
-  cross: IPlayer;
-  zero: IPlayer;
+  [key: string]: IPlayer;
 }
 export type TCell = TTurn | null;
 export type TTurn = 'cross' | 'zero';
