@@ -1,0 +1,17 @@
+export const EMPTY_DATA = {
+    roundTotal: 0,
+    playerOneError1: false,
+    playerOneError2: false,
+    playerOneError3: false,
+    playerTwoError1: false,
+    playerTwoError2: false,
+    playerTwoError3: false,
+    answer1: false,
+    answer2: false,
+    answer3: false,
+    answer4: false,
+    answer5: false,
+    answer6: false,
+    answer7: false,
+    answer8: false,
+}
